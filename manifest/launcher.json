@@ -1,0 +1,56 @@
+// Live manifest of the Nostalgia launcher – every installed launcher reads this file from the main branch:
+// https://raw.githubusercontent.com/armodillodelmuerte/nostalgia-launcher/main/manifest/launcher.json
+// Schema and how-tos: docs/manifest.md. Changes go live ~5 minutes after the push (GitHub raw cache).
+// OPEN before the beta starts: server.host ("nostalgia.invalid" is a placeholder that never resolves),
+// links.discordInvite and links.feedbackChannel.
+{
+  "schemaVersion": 1,
+  "server": {
+    "name": "Nostalgia",
+    "host": "nostalgia.invalid",
+    "loginPort": 10300,
+    "regionPort": 10400,
+    "quickbarPort": 10380
+  },
+  "client": {
+    "supportedVersions": [1127],
+    "dllNames": ["game1127.dll", "game.dll"],
+    "infoUrl": "https://www.opendaoc.com/docs/client/"
+  },
+  "launcher": {
+    "minimumVersion": "0.1.0",
+    "latestVersion": "0.1.0",
+    "downloadUrl": null,
+    "sha256": null,
+    "releaseNotesUrl": "https://github.com/armodillodelmuerte/nostalgia-launcher/releases"
+  },
+  "links": {
+    "website": null,
+    "discordInvite": null,
+    "feedbackChannel": null,
+    "privacy": null
+  },
+  "bot": {
+    "registerCommand": "/register",
+    "resetCommand": "/reset"
+  },
+  "features": {
+    "quickbars": false
+  },
+  "phase": {
+    "id": "beta",
+    "badge": "BETA",
+    "title": "Nostalgia PvP-Freeshard – Beta-Test",
+    "noticeDe": "Nostalgia ist ein PvP-Freeshard im Beta-Test. Rechne mit Fehlern, Neustarts und Balance-Änderungen. Fortschritt kann vor dem offiziellen Start zurückgesetzt werden. Feedback und Bugs bitte im Discord.",
+    "noticeEn": "Nostalgia is a PvP freeshard in beta test. Expect bugs, restarts and balance changes. Progress may be reset before the official launch. Please report feedback and bugs on Discord.",
+    "noticeVersion": 1
+  },
+  "news": [
+    {
+      "title": "Beta-Test",
+      "date": "2026-10-05",
+      "text": "Willkommen im Beta-Test von Nostalgia. Konten gibt es nur über den Discord-Bot: /register <Name>.",
+      "link": null
+    }
+  ]
+}

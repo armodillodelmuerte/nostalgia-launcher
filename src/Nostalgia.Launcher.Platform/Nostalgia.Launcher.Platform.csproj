@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Platform services: Windows implementation (registry, connect.exe, DPAPI) and Linux stubs (Wine later, docs/linux-plan.md). -->
+  <PropertyGroup>
+    <RootNamespace>Nostalgia.Launcher.Platform</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nostalgia.Launcher.Core\Nostalgia.Launcher.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="10.0.12" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Nostalgia.Launcher.Tests" />
+  </ItemGroup>
+</Project>

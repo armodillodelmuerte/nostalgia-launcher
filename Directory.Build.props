@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <!-- Launcher version. CI overrides it from the tag (v0.1.0 → 0.1.0): dotnet publish -p:Version=… -->
+    <Version>0.1.0</Version>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <Authors>Nostalgia</Authors>
+    <Product>Nostalgia Launcher</Product>
+    <Copyright>Nostalgia fan project</Copyright>
+    <!-- No git hash in InformationalVersion (keeps the version compare simple). -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AvaloniaVersion>11.3.22</AvaloniaVersion>
+  </PropertyGroup>
+</Project>

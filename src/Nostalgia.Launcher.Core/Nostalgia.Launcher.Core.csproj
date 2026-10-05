@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Platform-free logic: manifest, phase/beta notice, versions, updates, paste trimming, client validation,
+       status probe, settings, support info, and the platform service interfaces. No UI, no OS APIs. -->
+  <PropertyGroup>
+    <RootNamespace>Nostalgia.Launcher.Core</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Nostalgia.Launcher.Tests" />
+  </ItemGroup>
+</Project>

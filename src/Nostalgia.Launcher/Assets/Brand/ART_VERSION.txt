@@ -1,0 +1,4 @@
+art-commit: 57cfded74e63
+art-commit-date: 2026-10-05T14:50:40+02:00
+synced: 2026-10-05T15:07:26+02:00
+source: nostalgia-art (direction A - Box-Art Dusk); re-sync with tools/sync-art.ps1, never edit these files by hand

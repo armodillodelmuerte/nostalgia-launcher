@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Nostalgia.Launcher.Core/Nostalgia.Launcher.Core.csproj" />
+    <Project Path="src/Nostalgia.Launcher.Platform/Nostalgia.Launcher.Platform.csproj" />
+    <Project Path="src/Nostalgia.Launcher/Nostalgia.Launcher.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Nostalgia.Launcher.Tests/Nostalgia.Launcher.Tests.csproj" />
+  </Folder>
+</Solution>

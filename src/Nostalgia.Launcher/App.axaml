@@ -1,0 +1,220 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Nostalgia.Launcher.App"
+             RequestedThemeVariant="Dark">
+  <Application.Resources>
+    <!-- Brand values from art/README.md -->
+    <Color x:Key="AccentColor">#e8b56a</Color>
+    <Color x:Key="InkColor">#f3e6cf</Color>
+    <Color x:Key="TrimColor">#e8d3a6</Color>
+    <Color x:Key="DarkInkColor">#14101a</Color>
+    <SolidColorBrush x:Key="Accent" Color="#e8b56a" />
+    <SolidColorBrush x:Key="Ink" Color="#f3e6cf" />
+    <SolidColorBrush x:Key="InkMuted" Color="#f3e6cf" Opacity="0.66" />
+    <SolidColorBrush x:Key="InkFaint" Color="#f3e6cf" Opacity="0.5" />
+    <SolidColorBrush x:Key="PanelBg" Color="#B8100B16" />
+    <SolidColorBrush x:Key="PanelLine" Color="#47e8b56a" />
+    <SolidColorBrush x:Key="FieldBg" Color="#59000000" />
+    <SolidColorBrush x:Key="FieldLine" Color="#1FFFFFFF" />
+    <SolidColorBrush x:Key="ButtonInk" Color="#1b1009" />
+    <SolidColorBrush x:Key="Online" Color="#5fd38a" />
+    <SolidColorBrush x:Key="Offline" Color="#e0645a" />
+    <LinearGradientBrush x:Key="GoldButton" StartPoint="0%,0%" EndPoint="0%,100%">
+      <GradientStop Color="#c98a3e" Offset="0" />
+      <GradientStop Color="#9c6227" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GoldButtonHover" StartPoint="0%,0%" EndPoint="0%,100%">
+      <GradientStop Color="#d99a4c" Offset="0" />
+      <GradientStop Color="#ab6d2e" Offset="1" />
+    </LinearGradientBrush>
+
+    <!-- Embedded fonts (OFL, licence texts in Assets/Brand/Fonts and the About dialog) -->
+    <FontFamily x:Key="BrandFont">avares://Nostalgia/Assets/Brand/Fonts#Cinzel SemiBold</FontFamily>
+    <FontFamily x:Key="BrandFontBold">avares://Nostalgia/Assets/Brand/Fonts#Cinzel</FontFamily>
+    <FontFamily x:Key="UiFont">avares://Nostalgia/Assets/Brand/Fonts#Inter</FontFamily>
+    <FontFamily x:Key="UiFontMedium">avares://Nostalgia/Assets/Brand/Fonts#Inter Medium</FontFamily>
+    <FontFamily x:Key="UiFontSemiBold">avares://Nostalgia/Assets/Brand/Fonts#Inter SemiBold</FontFamily>
+  </Application.Resources>
+
+  <Application.Styles>
+    <FluentTheme />
+
+    <Style Selector="Window">
+      <Setter Property="FontFamily" Value="{StaticResource UiFont}" />
+      <Setter Property="Foreground" Value="{StaticResource Ink}" />
+    </Style>
+
+    <!-- Card panel -->
+    <Style Selector="Border.card">
+      <Setter Property="Background" Value="{StaticResource PanelBg}" />
+      <Setter Property="BorderBrush" Value="{StaticResource PanelLine}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="10" />
+      <Setter Property="Padding" Value="24,20" />
+      <Setter Property="BoxShadow" Value="0 20 50 0 #59000000" />
+    </Style>
+    <Style Selector="TextBlock.h2">
+      <Setter Property="FontFamily" Value="{StaticResource BrandFont}" />
+      <Setter Property="FontSize" Value="15" />
+      <Setter Property="LetterSpacing" Value="3" />
+      <Setter Property="Foreground" Value="{StaticResource Accent}" />
+      <Setter Property="Margin" Value="0,0,0,14" />
+    </Style>
+    <Style Selector="TextBlock.label">
+      <Setter Property="FontSize" Value="11.5" />
+      <Setter Property="Foreground" Value="{StaticResource InkMuted}" />
+      <Setter Property="Margin" Value="0,0,0,6" />
+    </Style>
+    <Style Selector="TextBlock.body">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="LineHeight" Value="19" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style Selector="TextBlock.small">
+      <Setter Property="FontSize" Value="11.5" />
+      <Setter Property="Foreground" Value="{StaticResource InkMuted}" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+    <Style Selector="TextBlock.error">
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="Foreground" Value="#f0a090" />
+      <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <!-- Text fields -->
+    <Style Selector="TextBox.field">
+      <Setter Property="Height" Value="40" />
+      <Setter Property="FontSize" Value="14" />
+      <Setter Property="Padding" Value="12,0" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="Background" Value="{StaticResource FieldBg}" />
+      <Setter Property="BorderBrush" Value="{StaticResource FieldLine}" />
+      <Setter Property="Foreground" Value="{StaticResource Ink}" />
+      <Setter Property="CornerRadius" Value="6" />
+      <Setter Property="Margin" Value="0,0,0,12" />
+    </Style>
+    <Style Selector="TextBox.field:pointerover /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="{StaticResource FieldBg}" />
+      <Setter Property="BorderBrush" Value="#40e8b56a" />
+    </Style>
+    <Style Selector="TextBox.field:focus /template/ Border#PART_BorderElement">
+      <Setter Property="Background" Value="#73000000" />
+      <Setter Property="BorderBrush" Value="{StaticResource Accent}" />
+    </Style>
+
+    <!-- Gold play button -->
+    <Style Selector="Button.gold">
+      <Setter Property="Height" Value="50" />
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+      <Setter Property="HorizontalContentAlignment" Value="Center" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="Background" Value="{StaticResource GoldButton}" />
+      <Setter Property="Foreground" Value="{StaticResource ButtonInk}" />
+      <Setter Property="FontFamily" Value="{StaticResource BrandFontBold}" />
+      <Setter Property="FontSize" Value="17" />
+      <Setter Property="CornerRadius" Value="7" />
+    </Style>
+    <Style Selector="Button.gold:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{StaticResource GoldButtonHover}" />
+      <Setter Property="Foreground" Value="{StaticResource ButtonInk}" />
+    </Style>
+    <Style Selector="Button.gold:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#9c6227" />
+      <Setter Property="Foreground" Value="{StaticResource ButtonInk}" />
+    </Style>
+    <Style Selector="Button.gold:disabled /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#5a4630" />
+      <Setter Property="Foreground" Value="#8f7a62" />
+    </Style>
+    <Style Selector="Button.goldSmall">
+      <Setter Property="Height" Value="34" />
+      <Setter Property="Padding" Value="16,0" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="Background" Value="{StaticResource GoldButton}" />
+      <Setter Property="Foreground" Value="{StaticResource ButtonInk}" />
+      <Setter Property="FontFamily" Value="{StaticResource UiFontSemiBold}" />
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="CornerRadius" Value="6" />
+    </Style>
+    <Style Selector="Button.goldSmall:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{StaticResource GoldButtonHover}" />
+      <Setter Property="Foreground" Value="{StaticResource ButtonInk}" />
+    </Style>
+
+    <!-- Quiet outlined button -->
+    <Style Selector="Button.ghost">
+      <Setter Property="Height" Value="34" />
+      <Setter Property="Padding" Value="14,0" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
+      <Setter Property="Background" Value="#26000000" />
+      <Setter Property="BorderBrush" Value="{StaticResource PanelLine}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Foreground" Value="{StaticResource Ink}" />
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="CornerRadius" Value="6" />
+    </Style>
+    <Style Selector="Button.ghost:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#33e8b56a" />
+      <Setter Property="BorderBrush" Value="{StaticResource Accent}" />
+      <Setter Property="Foreground" Value="{StaticResource Ink}" />
+    </Style>
+
+    <!-- Text link -->
+    <Style Selector="Button.link">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="MinHeight" Value="0" />
+      <Setter Property="Foreground" Value="{StaticResource Accent}" />
+      <Setter Property="FontSize" Value="12" />
+      <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="Button.link:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="#ffd59a" />
+    </Style>
+    <Style Selector="Button.link:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <!-- Top navigation -->
+    <Style Selector="Button.nav">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="0,0,0,2" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+      <Setter Property="CornerRadius" Value="0" />
+      <Setter Property="Padding" Value="0,4" />
+      <Setter Property="Foreground" Value="{StaticResource InkMuted}" />
+      <Setter Property="FontSize" Value="13.5" />
+      <Setter Property="Cursor" Value="Hand" />
+    </Style>
+    <Style Selector="Button.nav:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="{StaticResource Ink}" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+    </Style>
+    <Style Selector="Button.nav.on">
+      <Setter Property="Foreground" Value="{StaticResource Ink}" />
+      <Setter Property="BorderBrush" Value="{StaticResource Accent}" />
+    </Style>
+    <Style Selector="Button.nav.on:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="BorderBrush" Value="{StaticResource Accent}" />
+    </Style>
+
+    <Style Selector="CheckBox.gold">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="Foreground" Value="{StaticResource Ink}" />
+    </Style>
+    <Style Selector="CheckBox.gold:checked /template/ Border#NormalRectangle">
+      <Setter Property="Background" Value="{StaticResource Accent}" />
+      <Setter Property="BorderBrush" Value="{StaticResource Accent}" />
+    </Style>
+    <Style Selector="CheckBox.gold:checked:pointerover /template/ Border#NormalRectangle">
+      <Setter Property="Background" Value="#ffd59a" />
+      <Setter Property="BorderBrush" Value="#ffd59a" />
+    </Style>
+    <Style Selector="CheckBox.gold:checked /template/ Path#CheckGlyph">
+      <Setter Property="Fill" Value="{StaticResource ButtonInk}" />
+    </Style>
+  </Application.Styles>
+</Application>

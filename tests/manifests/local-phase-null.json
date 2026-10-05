@@ -1,0 +1,25 @@
+// Staging manifest with phase: null → no badge, no strip, no dialog, plain window title.
+// Start: Nostalgia.exe --manifest tests\manifests\local-phase-null.json
+{
+  "schemaVersion": 1,
+  "server": { "name": "Nostalgia (lokal)", "host": "127.0.0.1", "loginPort": 10300, "regionPort": 10400, "quickbarPort": 10380 },
+  "client": {
+    "supportedVersions": [1127],
+    "dllNames": ["game1127.dll", "game.dll"],
+    "infoUrl": "https://www.opendaoc.com/docs/client/"
+  },
+  "launcher": { "minimumVersion": "0.1.0", "latestVersion": "0.1.0", "downloadUrl": null, "sha256": null },
+  "links": {
+    "website": "https://github.com/armodillodelmuerte/nostalgia-launcher",
+    "discordInvite": "https://discord.com/",
+    "feedbackChannel": "https://discord.com/"
+  },
+  "bot": { "registerCommand": "/register", "resetCommand": "/reset" },
+  "features": { "quickbars": false },
+  "phase": null,
+  "news": [
+    { "title": "Beta-Test gestartet", "date": "2026-10-05", "text": "Willkommen im Beta-Test von Nostalgia. Konten gibt es über den Discord-Bot.", "link": null },
+    { "title": "PvP-Arena im Hafen", "date": "2026-10-05", "text": "Die Arena ist in den Hafen von Gothwaite gezogen. Teleport über jeden Reichs-Teleporter: [PvP Arena].", "link": null },
+    { "title": "Golden Loot Goblin", "date": "2026-10-05", "text": "Ab und zu rennt ein goldener Goblin durch die Arena. Wer ihn erwischt, teilt sich 500 PvE-Tokens.", "link": null }
+  ]
+}

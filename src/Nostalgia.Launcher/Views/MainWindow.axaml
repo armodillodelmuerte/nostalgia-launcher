@@ -1,0 +1,328 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Nostalgia.Launcher.ViewModels"
+        xmlns:res="using:Nostalgia.Launcher.Resources"
+        x:Class="Nostalgia.Launcher.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Title="{Binding WindowTitle}"
+        Icon="avares://Nostalgia/Assets/Brand/nostalgia.ico"
+        Width="1280" Height="720" MinWidth="800" MinHeight="450"
+        WindowStartupLocation="CenterScreen"
+        Background="#14101a">
+
+  <!-- Background covers the window (centre crop for non-16:9); the UI sits on a 1280×720 design grid that scales
+       uniformly, so the safe zones from art/README.md hold at every size and DPI. -->
+  <Grid>
+    <Image x:Name="BgImage" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+    <Viewbox Stretch="Uniform">
+      <Canvas Width="1280" Height="720" ClipToBounds="True">
+
+        <!-- ── Top bar ───────────────────────────────────────────────────────────── -->
+        <Border Canvas.Left="0" Canvas.Top="0" Width="1280" Height="44">
+          <Border.Background>
+            <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+              <GradientStop Color="#8C000000" Offset="0" />
+              <GradientStop Color="#00000000" Offset="1" />
+            </LinearGradientBrush>
+          </Border.Background>
+          <Grid ColumnDefinitions="Auto,*,Auto" Margin="22,0,24,0" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Spacing="28">
+              <TextBlock Text="NOSTALGIA" FontFamily="{StaticResource BrandFont}" FontSize="12" LetterSpacing="2.5"
+                         Opacity="0.9" VerticalAlignment="Center" />
+              <StackPanel Orientation="Horizontal" Spacing="22">
+                <Button Classes="nav" Classes.on="{Binding IsPlayPage}" Command="{Binding ShowPlayCommand}"
+                        Content="{x:Static res:Strings.NavPlay}" />
+                <Button Classes="nav" Classes.on="{Binding IsQuickbarsPage}" Command="{Binding ShowQuickbarsCommand}"
+                        IsVisible="{Binding QuickbarsVisible}" Content="{x:Static res:Strings.NavQuickbars}" />
+                <Button Classes="nav" Classes.on="{Binding IsSettingsPage}" Command="{Binding ShowSettingsCommand}"
+                        Content="{x:Static res:Strings.NavSettings}" />
+              </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="7" VerticalAlignment="Center">
+              <Ellipse Width="7" Height="7" VerticalAlignment="Center"
+                       Classes.online="{Binding ServerOnline, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:True}}"
+                       Classes.offline="{Binding ServerOnline, Converter={x:Static ObjectConverters.Equal}, ConverterParameter={x:False}}">
+                <Ellipse.Styles>
+                  <Style Selector="Ellipse"><Setter Property="Fill" Value="#8a8a8a" /></Style>
+                  <Style Selector="Ellipse.online"><Setter Property="Fill" Value="{StaticResource Online}" /></Style>
+                  <Style Selector="Ellipse.offline"><Setter Property="Fill" Value="{StaticResource Offline}" /></Style>
+                </Ellipse.Styles>
+              </Ellipse>
+              <TextBlock Text="{Binding StatusText}" FontSize="12" Opacity="0.85" VerticalAlignment="Center" />
+            </StackPanel>
+          </Grid>
+        </Border>
+
+        <!-- ── Logo zone 40,56 – 800,176: logo + phase badge (drawn, no art file) ─── -->
+        <Image Canvas.Left="60" Canvas.Top="70" Height="76" Stretch="Uniform"
+               Source="avares://Nostalgia/Assets/Brand/logo-horizontal-color-1600.png"
+               RenderOptions.BitmapInterpolationMode="HighQuality" />
+        <Border Canvas.Left="530" Canvas.Top="92" IsVisible="{Binding HasPhase}"
+                BorderBrush="{StaticResource Accent}" BorderThickness="1.5" CornerRadius="999"
+                Background="#661b1009" Padding="16,5,13,5">
+          <Button Classes="link" Command="{Binding ShowBetaNoticeCommand}" ToolTip.Tip="{Binding PhaseTitle}">
+            <TextBlock Text="{Binding PhaseBadge}" FontFamily="{StaticResource BrandFont}" FontSize="15"
+                       LetterSpacing="4.8" Foreground="{StaticResource Accent}" />
+          </Button>
+        </Border>
+        <TextBlock Canvas.Left="64" Canvas.Top="152" Text="{x:Static res:Strings.Tagline}" FontSize="12.5"
+                   LetterSpacing="1.8" Opacity="0.72" />
+
+        <!-- ── Footer zone 40,650 – 800,704: phase strip + version/disclaimer ───────── -->
+        <Border Canvas.Left="40" Canvas.Top="650" Height="28" IsVisible="{Binding HasPhase}"
+                Background="#A6100B16" BorderBrush="{StaticResource PanelLine}" BorderThickness="1"
+                CornerRadius="14" Padding="14,0">
+          <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+            <TextBlock Text="{Binding StripText}" FontSize="12" VerticalAlignment="Center" />
+            <Button Classes="link" Command="{Binding OpenFeedbackCommand}" IsVisible="{Binding HasFeedbackLink}"
+                    Content="{x:Static res:Strings.BetaStripLink}" VerticalAlignment="Center" />
+            <TextBlock Text="{x:Static res:Strings.BetaStripLink}" IsVisible="{Binding !HasFeedbackLink}"
+                       FontSize="12" VerticalAlignment="Center" />
+          </StackPanel>
+        </Border>
+        <TextBlock Canvas.Left="44" Canvas.Top="684" FontSize="11" Opacity="0.55" MaxWidth="756" TextTrimming="CharacterEllipsis">
+          <Run Text="{Binding FooterLine}" />
+          <Run Text=" · " />
+          <Run Text="{Binding Disclaimer}" />
+        </TextBlock>
+
+        <!-- ── Panel column 840,64 – 1240,680 ─────────────────────────────────────── -->
+        <Grid Canvas.Left="872" Canvas.Top="74" Width="352" Height="606" RowDefinitions="Auto,Auto,*">
+
+          <!-- Update banner -->
+          <Border Grid.Row="0" Classes="card" Padding="18,14" Margin="0,0,0,12" IsVisible="{Binding ShowUpdateBanner}">
+            <StackPanel Spacing="8">
+              <TextBlock Classes="body" Text="{Binding UpdateText}" />
+              <ProgressBar IsVisible="{Binding IsUpdating}" Minimum="0" Maximum="1" Value="{Binding UpdateProgress}"
+                           Foreground="{StaticResource Accent}" Height="4" />
+              <TextBlock Classes="error" Text="{Binding UpdateError}" IsVisible="{Binding UpdateError, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+              <Button Classes="goldSmall" Command="{Binding StartUpdateCommand}" IsVisible="{Binding UpdateAvailable}"
+                      IsEnabled="{Binding !IsUpdating}" Content="{x:Static res:Strings.UpdateNow}" />
+            </StackPanel>
+          </Border>
+
+          <!-- PLAY page -->
+          <Border Grid.Row="1" Classes="card" IsVisible="{Binding IsPlayPage}">
+            <Panel>
+              <!-- First start: client setup -->
+              <StackPanel IsVisible="{Binding ClientSetupNeeded}">
+                <TextBlock Classes="h2" Text="{x:Static res:Strings.ClientSetupTitle}" />
+                <TextBlock Classes="body" Text="{Binding ClientMessage}" Margin="0,0,0,16" />
+                <StackPanel Spacing="10">
+                  <Button Classes="goldSmall" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          Command="{Binding PickClientFolderCommand}" Content="{x:Static res:Strings.PickClientFolder}" />
+                  <Button Classes="ghost" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          Command="{Binding RetryClientSearchCommand}" Content="{x:Static res:Strings.RetryClientSearch}" />
+                  <Button Classes="link" Command="{Binding OpenClientInfoCommand}" Content="{x:Static res:Strings.WhereIsClient}" Margin="0,4,0,0" />
+                </StackPanel>
+              </StackPanel>
+
+              <!-- Login + play -->
+              <StackPanel IsVisible="{Binding !ClientSetupNeeded}">
+                <TextBlock Classes="h2" Text="{x:Static res:Strings.LoginTitle}" />
+                <TextBlock Classes="label" Text="{x:Static res:Strings.AccountName}" />
+                <TextBox Classes="field" Text="{Binding AccountName}" MaxLength="40" x:Name="AccountBox" />
+                <TextBlock Classes="label" Text="{x:Static res:Strings.Password}" />
+                <Grid ColumnDefinitions="*" Margin="0,0,0,0">
+                  <TextBox Classes="field" Text="{Binding Password}" PasswordChar="{Binding PasswordChar}" RevealPassword="False"
+                           MaxLength="64" Padding="12,0,82,0" x:Name="PasswordBox" />
+                  <Button Classes="link" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,12,12,0"
+                          Foreground="{StaticResource InkMuted}" FontSize="11.5"
+                          Command="{Binding ToggleShowPasswordCommand}" Content="{Binding ShowPasswordText}" />
+                </Grid>
+                <CheckBox Classes="gold" IsChecked="{Binding RememberLogin}" Content="{x:Static res:Strings.RememberLogin}" Margin="0,0,0,12" />
+                <TextBlock Classes="error" Text="{Binding LoginError}" Margin="0,0,0,8"
+                           IsVisible="{Binding LoginError, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                <Button Classes="gold" Command="{Binding PlayCommand}" IsEnabled="{Binding CanPlay}">
+                  <TextBlock Text="{x:Static res:Strings.PlayButton}" LetterSpacing="5" />
+                </Button>
+                <TextBlock Classes="small" Text="{Binding PlayHint}" Margin="0,8,0,0" HorizontalAlignment="Center"
+                           IsVisible="{Binding PlayHint, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                <Grid ColumnDefinitions="*,Auto" Margin="0,12,0,0">
+                  <StackPanel Orientation="Horizontal" Spacing="4">
+                    <TextBlock Text="{x:Static res:Strings.NoAccountQ}" FontSize="12" Opacity="0.72" VerticalAlignment="Center" />
+                    <Button Classes="link" Command="{Binding ShowRegisterHelpCommand}" Content="{Binding RegisterCommand}" />
+                  </StackPanel>
+                  <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="4">
+                    <TextBlock Text="{x:Static res:Strings.ForgotQ}" FontSize="12" Opacity="0.72" VerticalAlignment="Center" />
+                    <Button Classes="link" Command="{Binding ShowResetHelpCommand}" Content="{Binding ResetCommand}" />
+                  </StackPanel>
+                </Grid>
+              </StackPanel>
+            </Panel>
+          </Border>
+
+          <!-- News -->
+          <Border Grid.Row="2" Classes="card" Margin="0,12,0,0" IsVisible="{Binding IsPlayPage}" Padding="24,18,10,14">
+            <Grid RowDefinitions="Auto,*">
+              <TextBlock Classes="h2" Text="{x:Static res:Strings.NewsTitle}" Margin="0,0,0,10" />
+              <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="0,0,14,0">
+                <StackPanel>
+                  <TextBlock Classes="small" Text="{x:Static res:Strings.NewsEmpty}" IsVisible="{Binding !HasNews}" />
+                  <ItemsControl ItemsSource="{Binding News}">
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate x:DataType="vm:NewsItemViewModel">
+                        <Grid ColumnDefinitions="48,*" Margin="0,0,0,12">
+                          <TextBlock Text="{Binding DateText}" FontSize="12" Opacity="0.5" Margin="0,1,0,0" />
+                          <StackPanel Grid.Column="1" Spacing="2">
+                            <TextBlock Text="{Binding Title}" FontFamily="{StaticResource UiFontSemiBold}" FontSize="13" TextWrapping="Wrap" />
+                            <TextBlock Classes="body" Text="{Binding Text}" Opacity="0.9" />
+                            <Button Classes="link" IsVisible="{Binding HasLink}" Content="{x:Static res:Strings.NewsMore}"
+                                    Command="{Binding $parent[Window].((vm:MainViewModel)DataContext).OpenNewsCommand}"
+                                    CommandParameter="{Binding}" />
+                          </StackPanel>
+                        </Grid>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                </StackPanel>
+              </ScrollViewer>
+            </Grid>
+          </Border>
+
+          <!-- SETTINGS page -->
+          <Border Grid.Row="1" Grid.RowSpan="2" Classes="card" IsVisible="{Binding IsSettingsPage}" VerticalAlignment="Top">
+            <StackPanel Spacing="6">
+              <TextBlock Classes="h2" Text="{x:Static res:Strings.SettingsTitle}" />
+
+              <TextBlock Classes="label" Text="{x:Static res:Strings.SettingsClient}" />
+              <TextBlock Classes="small" Text="{Binding ClientFolderText}" Margin="0,0,0,6" />
+              <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,12">
+                <Button Classes="ghost" Command="{Binding PickClientFolderCommand}" Content="{x:Static res:Strings.ChangeClientFolder}" />
+                <Button Classes="ghost" Command="{Binding RetryClientSearchCommand}" Content="{x:Static res:Strings.RetryClientSearchShort}" />
+              </StackPanel>
+
+              <TextBlock Classes="label" Text="{x:Static res:Strings.SettingsAccount}" />
+              <TextBlock Classes="small" Text="{Binding AccountName}" FontFamily="{StaticResource UiFontSemiBold}" Margin="0,0,0,6" />
+              <WrapPanel Orientation="Horizontal" Margin="0,0,0,6">
+                <Button Classes="ghost" Margin="0,0,8,8" Command="{Binding ReplacePasswordCommand}" Content="{x:Static res:Strings.ReplacePassword}" />
+                <Button Classes="ghost" Margin="0,0,8,8" Command="{Binding ForgetLoginCommand}" Content="{x:Static res:Strings.ForgetLogin}" />
+              </WrapPanel>
+
+              <TextBlock Classes="label" Text="{x:Static res:Strings.SettingsHelp}" />
+              <WrapPanel Orientation="Horizontal">
+                <Button Classes="ghost" Margin="0,0,8,8" Command="{Binding CopySupportInfoCommand}" Content="{x:Static res:Strings.CopySupportInfo}" />
+                <Button Classes="ghost" Margin="0,0,8,8" Command="{Binding OpenLogsCommand}" Content="{x:Static res:Strings.OpenLogs}" />
+                <Button Classes="ghost" Margin="0,0,8,8" Command="{Binding OpenDiscordCommand}" IsVisible="{Binding HasDiscordLink}" Content="{x:Static res:Strings.OpenDiscord}" />
+                <Button Classes="ghost" Margin="0,0,8,8" Command="{Binding OpenWebsiteCommand}" IsVisible="{Binding HasWebsite}" Content="{x:Static res:Strings.OpenWebsite}" />
+                <Button Classes="ghost" Margin="0,0,8,8" Command="{Binding ShowBetaNoticeCommand}" IsVisible="{Binding HasPhase}" Content="{x:Static res:Strings.ShowBetaNotice}" />
+                <Button Classes="ghost" Margin="0,0,8,8" Command="{Binding ShowPrivacyCommand}" Content="{x:Static res:Strings.Privacy}" />
+                <Button Classes="ghost" Margin="0,0,8,8" Command="{Binding ShowAboutCommand}" Content="{x:Static res:Strings.About}" />
+              </WrapPanel>
+              <TextBlock Classes="small" Text="{Binding Toast}" Foreground="{StaticResource Accent}"
+                         IsVisible="{Binding Toast, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+            </StackPanel>
+          </Border>
+
+          <!-- QUICKBARS page (module not built yet: only reachable when the build has it AND the manifest flag is on) -->
+          <Border Grid.Row="1" Grid.RowSpan="2" Classes="card" IsVisible="{Binding IsQuickbarsPage}" VerticalAlignment="Top">
+            <StackPanel>
+              <TextBlock Classes="h2" Text="{x:Static res:Strings.NavQuickbars}" />
+              <TextBlock Classes="body" Text="{x:Static res:Strings.QuickbarsNotYet}" />
+            </StackPanel>
+          </Border>
+        </Grid>
+
+        <!-- ── Overlays (modal) ────────────────────────────────────────────────────── -->
+        <Border Canvas.Left="0" Canvas.Top="0" Width="1280" Height="720" Background="#B3000000" IsVisible="{Binding OverlayVisible}">
+          <Border Classes="card" Background="#F5150F1D" Width="600" MaxHeight="620" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="32,26">
+            <Panel>
+              <!-- Beta / phase notice -->
+              <StackPanel IsVisible="{Binding IsBetaOverlay}" Spacing="14">
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                  <Border BorderBrush="{StaticResource Accent}" BorderThickness="1.5" CornerRadius="999" Padding="12,3,9,3" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding PhaseBadge}" FontFamily="{StaticResource BrandFont}" FontSize="13" LetterSpacing="4" Foreground="{StaticResource Accent}" />
+                  </Border>
+                  <TextBlock Text="{Binding PhaseTitle}" FontFamily="{StaticResource BrandFont}" FontSize="18" LetterSpacing="1" VerticalAlignment="Center" TextWrapping="Wrap" MaxWidth="420" />
+                </StackPanel>
+                <TextBlock Classes="body" FontSize="14.5" LineHeight="22" Text="{Binding PhaseNotice}" />
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right" Margin="0,6,0,0">
+                  <Button Classes="ghost" Command="{Binding OpenFeedbackCommand}" IsVisible="{Binding HasFeedbackLink}" Content="{x:Static res:Strings.FeedbackChannel}" />
+                  <Button Classes="goldSmall" Command="{Binding AcknowledgeBetaCommand}" Content="{x:Static res:Strings.Understood}" MinWidth="140" HorizontalContentAlignment="Center" />
+                </StackPanel>
+              </StackPanel>
+
+              <!-- No account yet -->
+              <StackPanel IsVisible="{Binding IsRegisterOverlay}" Spacing="14">
+                <TextBlock Classes="h2" Text="{x:Static res:Strings.RegisterTitle}" Margin="0" />
+                <TextBlock Classes="body" FontSize="14" LineHeight="22" Text="{Binding RegisterSteps}" />
+                <TextBlock Classes="small" Text="{x:Static res:Strings.RegisterNote}" />
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
+                  <Button Classes="ghost" Command="{Binding CloseOverlayCommand}" Content="{x:Static res:Strings.Close}" />
+                  <Button Classes="goldSmall" Command="{Binding OpenDiscordCommand}" IsEnabled="{Binding HasDiscordLink}" Content="{x:Static res:Strings.OpenDiscord}" />
+                </StackPanel>
+              </StackPanel>
+
+              <!-- Password forgotten -->
+              <StackPanel IsVisible="{Binding IsResetOverlay}" Spacing="14">
+                <TextBlock Classes="h2" Text="{x:Static res:Strings.ResetTitle}" Margin="0" />
+                <TextBlock Classes="body" FontSize="14" LineHeight="22" Text="{Binding ResetSteps}" />
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
+                  <Button Classes="ghost" Command="{Binding CloseOverlayCommand}" Content="{x:Static res:Strings.Close}" />
+                  <Button Classes="ghost" Command="{Binding OpenDiscordCommand}" IsEnabled="{Binding HasDiscordLink}" Content="{x:Static res:Strings.OpenDiscord}" />
+                  <Button Classes="goldSmall" Command="{Binding ReplacePasswordCommand}" Content="{x:Static res:Strings.EnterNewPassword}" />
+                </StackPanel>
+              </StackPanel>
+
+              <!-- Client closed right after start -->
+              <StackPanel IsVisible="{Binding IsLaunchHintOverlay}" Spacing="12">
+                <TextBlock Classes="h2" Text="{x:Static res:Strings.HintTitle}" Margin="0" />
+                <TextBlock Classes="body" Text="{x:Static res:Strings.HintIntro}" />
+                <Border Background="#33000000" CornerRadius="6" Padding="14,10">
+                  <StackPanel Spacing="10">
+                    <TextBlock Classes="body" Text="{Binding HintWrongPasswordLine}" />
+                    <TextBlock Classes="body" Text="{x:Static res:Strings.HintNotLinked}" />
+                    <TextBlock Classes="body" Text="{Binding LaunchHintServerLine}" />
+                  </StackPanel>
+                </Border>
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
+                  <Button Classes="ghost" Command="{Binding CloseOverlayCommand}" Content="{x:Static res:Strings.Close}" />
+                  <Button Classes="ghost" Command="{Binding OpenDiscordCommand}" IsEnabled="{Binding HasDiscordLink}" Content="{x:Static res:Strings.OpenDiscord}" />
+                  <Button Classes="goldSmall" Command="{Binding ReplacePasswordCommand}" Content="{x:Static res:Strings.EnterNewPassword}" />
+                </StackPanel>
+              </StackPanel>
+
+              <!-- No game process appeared -->
+              <StackPanel IsVisible="{Binding IsLaunchFailedOverlay}" Spacing="12">
+                <TextBlock Classes="h2" Text="{x:Static res:Strings.LaunchFailedTitle}" Margin="0" />
+                <TextBlock Classes="body" Text="{x:Static res:Strings.LaunchFailedText}" />
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
+                  <Button Classes="ghost" Command="{Binding CopySupportInfoCommand}" Content="{x:Static res:Strings.CopySupportInfo}" />
+                  <Button Classes="goldSmall" Command="{Binding CloseOverlayCommand}" Content="{x:Static res:Strings.Close}" />
+                </StackPanel>
+              </StackPanel>
+
+              <!-- About -->
+              <Grid IsVisible="{Binding IsAboutOverlay}" RowDefinitions="Auto,Auto,Auto,*,Auto">
+                <TextBlock Classes="h2" Text="{x:Static res:Strings.AboutTitle}" Margin="0,0,0,10" />
+                <TextBlock Grid.Row="1" Classes="body" Text="{Binding AboutVersionLine}" Margin="0,0,0,10" />
+                <TextBlock Grid.Row="2" Classes="body" Text="{x:Static res:Strings.DisclaimerFull}" Margin="0,0,0,10" />
+                <ScrollViewer Grid.Row="3" MaxHeight="300" Padding="0,0,12,0">
+                  <StackPanel Spacing="8">
+                    <TextBlock Classes="small" Text="{x:Static res:Strings.AboutCredits}" />
+                    <TextBlock Classes="label" Text="Cinzel – SIL Open Font License 1.1" Margin="0,6,0,0" />
+                    <TextBlock FontFamily="Consolas, monospace" FontSize="10.5" Opacity="0.7" TextWrapping="Wrap" Text="{Binding LicenseCinzel}" />
+                    <TextBlock Classes="label" Text="Inter – SIL Open Font License 1.1" Margin="0,6,0,0" />
+                    <TextBlock FontFamily="Consolas, monospace" FontSize="10.5" Opacity="0.7" TextWrapping="Wrap" Text="{Binding LicenseInter}" />
+                  </StackPanel>
+                </ScrollViewer>
+                <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right" Margin="0,14,0,0">
+                  <Button Classes="ghost" Command="{Binding OpenSourceCommand}" Content="{x:Static res:Strings.SourceCode}" />
+                  <Button Classes="goldSmall" Command="{Binding CloseOverlayCommand}" Content="{x:Static res:Strings.Close}" />
+                </StackPanel>
+              </Grid>
+
+              <!-- Privacy -->
+              <StackPanel IsVisible="{Binding IsPrivacyOverlay}" Spacing="12">
+                <TextBlock Classes="h2" Text="{x:Static res:Strings.Privacy}" Margin="0" />
+                <TextBlock Classes="body" Text="{Binding PrivacyText}" />
+                <Button Classes="goldSmall" HorizontalAlignment="Right" Command="{Binding CloseOverlayCommand}" Content="{x:Static res:Strings.Close}" />
+              </StackPanel>
+            </Panel>
+          </Border>
+        </Border>
+      </Canvas>
+    </Viewbox>
+  </Grid>
+</Window>

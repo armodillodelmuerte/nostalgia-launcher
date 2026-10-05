@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" />
+    <PackageReference Include="Avalonia.Headless.XUnit" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Skia" Version="$(AvaloniaVersion)" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Nostalgia.Launcher.Core\Nostalgia.Launcher.Core.csproj" />
+    <ProjectReference Include="..\..\src\Nostalgia.Launcher.Platform\Nostalgia.Launcher.Platform.csproj" />
+    <ProjectReference Include="..\..\src\Nostalgia.Launcher\Nostalgia.Launcher.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\manifests\*.json" Link="manifests\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\manifest\launcher.json" Link="manifests\production-launcher.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
