@@ -50,6 +50,10 @@ Der Quickbar-Import mit dem Code des Master Trainers kommt in einer späteren Ve
 
 Unter **Einstellungen** findest du **„Support-Info kopieren“**. Füge den Text im Discord ein; er enthält Versionen und Pfade, aber nie dein Passwort. Unter „Logs öffnen“ liegen die Protokolle der letzten Tage.
 
+## Lizenz
+
+Der Programmcode des Launchers steht unter der MIT-Lizenz (Datei `LICENSE`, Copyright (c) 2026 Nostalgia PVP Team). Ausgenommen sind die Grafiken (Logo, Hintergründe, Icon): Alle Rechte vorbehalten, sie dürfen nur unverändert im Nostalgia-Launcher genutzt werden. Die Schriften Cinzel und Inter stehen unter der SIL Open Font License (Ordner `licenses`). Fremdkomponenten wie Avalonia, SkiaSharp und Serilog sind in `THIRD-PARTY-NOTICES.md` aufgeführt.
+
 Datenschutz: Der Server speichert deine Discord-ID und deinen Kontonamen. Der Launcher speichert nur auf deinem PC: das verschlüsselte Login, die Einstellungen und die Logs (Details im Launcher unter „Datenschutz“).
 
 ---

@@ -40,7 +40,7 @@ jobs:
           New-Item -ItemType Directory dist | Out-Null
           Copy-Item out/Nostalgia.exe dist/Nostalgia.exe
           New-Item -ItemType Directory pkg | Out-Null
-          Copy-Item out/Nostalgia.exe, LIESMICH.md pkg/
+          Copy-Item out/Nostalgia.exe, LIESMICH.md, LICENSE, THIRD-PARTY-NOTICES.md pkg/
           New-Item -ItemType Directory pkg/licenses | Out-Null
           Copy-Item src/Nostalgia.Launcher/Assets/Brand/Fonts/OFL-*.txt pkg/licenses/
           Compress-Archive -Path pkg/* -DestinationPath "dist/Nostalgia-$v-win-x64.zip"

@@ -41,8 +41,8 @@ dotnet publish src/Nostalgia.Launcher -c Release -r win-x64 -o publish/win-x64  
 
 Command-line options (testing): `--manifest <file|url>` (or env `NOSTALGIA_MANIFEST`), env `NOSTALGIA_DATA_DIR` (other data folder than `%LOCALAPPDATA%\Nostalgia`).
 
-## Art and licences
+## Lizenz / Licence
 
-Background, logo and icon are original Nostalgia artwork (no official DAoC/Mythic/EA/Broadsword material). Fonts: Cinzel and Inter, both SIL Open Font License 1.1 – licence texts in `src/Nostalgia.Launcher/Assets/Brand/Fonts/` and in the About dialog.
-
-Licence of the launcher code: not chosen yet.
+- **Code:** MIT – see [LICENSE](LICENSE). Copyright (c) 2026 Nostalgia PVP Team.
+- **Exception – `src/Nostalgia.Launcher/Assets/Brand/`:** not covered by the MIT licence. Logo, backgrounds and icon are original Nostalgia artwork, all rights reserved, usable only unmodified in the Nostalgia Launcher built from this repository; the fonts (Cinzel, Inter) are under the SIL Open Font License 1.1. Details: [Assets/Brand/LICENSE.md](src/Nostalgia.Launcher/Assets/Brand/LICENSE.md). If you fork the launcher for something else, replace these files.
+- **Third-party components** (Avalonia, SkiaSharp, Serilog, …): [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
