@@ -7,9 +7,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-    <!-- No German satellite folders etc.: the UI strings are the neutral resources. -->
-    <SatelliteResourceLanguages>de;en</SatelliteResourceLanguages>
-    <NeutralLanguage>de</NeutralLanguage>
+    <!-- UI language English (neutral resources, Resources/strings.en.json); no satellite assemblies. -->
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <!-- Release build: one self-contained Nostalgia.exe (dotnet publish -c Release -r win-x64). -->

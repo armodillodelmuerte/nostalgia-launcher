@@ -4,3 +4,4 @@
 *.ttf binary
 *.woff2 binary
 *.exe binary
+licenses/*.txt -text

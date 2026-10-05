@@ -7,7 +7,7 @@ public static class BuiltInDefaults
     public const string ManifestUrl =
         "https://raw.githubusercontent.com/armodillodelmuerte/nostalgia-launcher/main/manifest/launcher.json";
 
-    /// <summary>Beta text (same as nostalgia-ops <c>config/beta.json</c>, Handover session 2026-10-05).</summary>
+    /// <summary>Beta text (same as nostalgia-ops <c>config/beta.json</c>, Handover session 2026-10-05). The UI shows the English text.</summary>
     public const string BetaNoticeDe =
         "Nostalgia ist ein PvP-Freeshard im Beta-Test. Rechne mit Fehlern, Neustarts und Balance-Änderungen. " +
         "Fortschritt kann vor dem offiziellen Start zurückgesetzt werden. Feedback und Bugs bitte im Discord.";
@@ -20,7 +20,7 @@ public static class BuiltInDefaults
     {
         Id = "beta",
         Badge = "BETA",
-        Title = "Nostalgia PvP-Freeshard – Beta-Test",
+        Title = "Nostalgia PvP Freeshard – Beta Test",
         NoticeDe = BetaNoticeDe,
         NoticeEn = BetaNoticeEn,
         NoticeVersion = 1,

@@ -100,9 +100,10 @@ public class UiTests
         await vm.InitializeAsync();
         Assert.True(vm.HasPhase);
         Assert.Equal("BETA", vm.PhaseBadge);
-        Assert.Equal("Nostalgia – PvP-Freeshard (Beta-Test)", vm.WindowTitle);
+        Assert.Equal("Nostalgia – PvP Freeshard (Beta Test)", vm.WindowTitle);
         Assert.Equal(Overlay.Beta, vm.CurrentOverlay);
-        Assert.Equal(BuiltInDefaults.BetaNoticeDe, vm.PhaseNotice);
+        Assert.Equal(BuiltInDefaults.BetaNoticeEn, vm.PhaseNotice);
+        Assert.Equal(["Beta test starting", "Golden Loot Goblin event added", "Rift event added"], vm.News.Select(n => n.Title));
         vm.AcknowledgeBetaCommand.Execute(null);
         Assert.Equal(Overlay.None, vm.CurrentOverlay);
 

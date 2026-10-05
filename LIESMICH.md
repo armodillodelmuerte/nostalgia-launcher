@@ -1,7 +1,9 @@
 # Nostalgia Launcher – Kurzanleitung
 
 > **Nostalgia ist im Beta-Test.**
-> Nostalgia ist ein PvP-Freeshard im Beta-Test. Rechne mit Fehlern, Neustarts und Balance-Änderungen. Fortschritt kann vor dem offiziellen Start zurückgesetzt werden. Feedback und Bugs bitte im Discord – im Feedback-Kanal (Link im Launcher unten links: „Feedback im Discord“).
+> Nostalgia ist ein PvP-Freeshard im Beta-Test. Rechne mit Fehlern, Neustarts und Balance-Änderungen. Fortschritt kann vor dem offiziellen Start zurückgesetzt werden. Feedback und Bugs bitte im Discord – im Feedback-Kanal (Link im Launcher unten links: „Feedback on Discord“).
+
+Die Oberfläche des Launchers ist englisch; die Knöpfe sind unten mit ihrem englischen Namen genannt.
 
 ## 1. Client besorgen
 
@@ -13,21 +15,21 @@ Du brauchst einen Dark-Age-of-Camelot-Client mit **game1127.dll** und **connect.
 
 1. `Nostalgia.exe` von der Release-Seite herunterladen und in einen eigenen Ordner legen, z. B. `Dokumente\Nostalgia`. Nicht in „Programme“ legen, sonst kann er sich nicht selbst aktualisieren.
 2. Starten. Windows zeigt beim ersten Mal **„Der Computer wurde durch Windows geschützt“**, weil der Launcher nicht signiert ist. Klicke auf **„Weitere Informationen“** und dann auf **„Trotzdem ausführen“**.
-3. Der Launcher sucht den Client selbst. Findet er ihn nicht, wähle den Client-Ordner mit **„Ordner wählen …“**.
-4. Lies den Beta-Hinweis und klicke auf **„Verstanden“**.
+3. Der Launcher sucht den Client selbst. Findet er ihn nicht, wähle den Client-Ordner mit **„Choose folder …“**.
+4. Lies den Beta-Hinweis und klicke auf **„Got it“**.
 
 ## 3. Konto anlegen (Discord)
 
-1. Tritt dem Nostalgia-Discord bei (Button „Discord öffnen“ im Launcher).
+1. Tritt dem Nostalgia-Discord bei (Button „Open Discord“ im Launcher).
 2. Schreib im Kanal: `/register <Name>`. Der Name darf nur Buchstaben und Ziffern enthalten, und jeder Discord-Nutzer bekommt ein Konto.
 3. Der Bot zeigt dir **Kontoname und Passwort**. Kopiere beides in den Launcher. Leerzeichen und Zeilenumbrüche beim Einfügen sind kein Problem.
-4. Lass „Login merken“ an. Das Passwort ist zufällig und wird verschlüsselt gespeichert, du musst es nie tippen.
-5. Klicke auf **SPIELEN**. Der Client startet direkt in die Charakterauswahl.
+4. Lass „Remember login“ an. Das Passwort ist zufällig und wird verschlüsselt gespeichert, du musst es nie tippen.
+5. Klicke auf **PLAY**. Der Client startet direkt in die Charakterauswahl.
 
 ## 4. Passwort verloren oder neuer PC
 
 - Schreib im Discord `/reset`. Der Bot zeigt ein neues Passwort, das alte gilt dann nicht mehr.
-- Im Launcher auf „/reset“ und dann auf **„Neues Passwort eingeben“** klicken (oder unter Einstellungen auf „Passwort ersetzen“). Neues Passwort einfügen und auf SPIELEN klicken; der Launcher ersetzt das gespeicherte.
+- Im Launcher auf „/reset“ und dann auf **„Enter new password“** klicken (oder unter Settings auf „Replace password“). Neues Passwort einfügen und auf PLAY klicken; der Launcher ersetzt das gespeicherte.
 - Auf einem neuen PC genauso vorgehen. Das gespeicherte Login gilt nur für deinen Windows-Benutzer auf diesem PC.
 
 ## 5. Wenn der Client gleich wieder zugeht
@@ -48,13 +50,13 @@ Der Quickbar-Import mit dem Code des Master Trainers kommt in einer späteren Ve
 
 ## 7. Hilfe
 
-Unter **Einstellungen** findest du **„Support-Info kopieren“**. Füge den Text im Discord ein; er enthält Versionen und Pfade, aber nie dein Passwort. Unter „Logs öffnen“ liegen die Protokolle der letzten Tage.
+Unter **Settings** findest du **„Copy support info“**. Füge den Text im Discord ein; er enthält Versionen und Pfade, aber nie dein Passwort. Unter „Open logs“ liegen die Protokolle der letzten Tage.
 
 ## Lizenz
 
 Der Programmcode des Launchers steht unter der MIT-Lizenz (Datei `LICENSE`, Copyright (c) 2026 Nostalgia PVP Team). Ausgenommen sind die Grafiken (Logo, Hintergründe, Icon): Alle Rechte vorbehalten, sie dürfen nur unverändert im Nostalgia-Launcher genutzt werden. Die Schriften Cinzel und Inter stehen unter der SIL Open Font License (Ordner `licenses`). Fremdkomponenten wie Avalonia, SkiaSharp und Serilog sind in `THIRD-PARTY-NOTICES.md` aufgeführt.
 
-Datenschutz: Der Server speichert deine Discord-ID und deinen Kontonamen. Der Launcher speichert nur auf deinem PC: das verschlüsselte Login, die Einstellungen und die Logs (Details im Launcher unter „Datenschutz“).
+Datenschutz: Der Server speichert deine Discord-ID und deinen Kontonamen. Der Launcher speichert nur auf deinem PC: das verschlüsselte Login, die Einstellungen und die Logs (Details im Launcher unter „Privacy“).
 
 ---
 Nostalgia is a fan-run project and is not affiliated with or endorsed by Broadcom, Electronic Arts or Mythic Entertainment. Dark Age of Camelot is a trademark of its respective owner.

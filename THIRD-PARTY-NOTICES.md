@@ -48,9 +48,10 @@ https://github.com/dotnet/runtime/blob/main/THIRD-PARTY-NOTICES.TXT
 
 The native SkiaSharp and HarfBuzzSharp libraries incorporate third-party material (among others ANGLE, HarfBuzz,
 Skia, libpng, expat, FreeType, ICU, libjpeg-turbo, libwebp, zlib) under their own licences (BSD, MIT,
-"Old MIT", libpng, FreeType, ICU …). The full notices are the file `THIRD-PARTY-NOTICES.txt` in the packages
-`SkiaSharp.NativeAssets.Win32` 2.88.9 and `HarfBuzzSharp.NativeAssets.Win32` 8.3.1.1 (identical files), downloadable with the package from
-https://www.nuget.org/packages/SkiaSharp.NativeAssets.Win32/2.88.9
+"Old MIT", libpng, FreeType, ICU …). The full notices – the file `THIRD-PARTY-NOTICES.txt` of the packages
+`SkiaSharp.NativeAssets.Win32` 2.88.9 and `HarfBuzzSharp.NativeAssets.Win32` 8.3.1.1 (identical files), copied unchanged –
+are in [`licenses/SkiaSharp-HarfBuzzSharp-THIRD-PARTY-NOTICES.txt`](licenses/SkiaSharp-HarfBuzzSharp-THIRD-PARTY-NOTICES.txt)
+(release zip: `licenses/` folder).
 
 ---
 

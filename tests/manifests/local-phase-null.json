@@ -18,8 +18,23 @@
   "features": { "quickbars": false },
   "phase": null,
   "news": [
-    { "title": "Beta-Test gestartet", "date": "2026-10-05", "text": "Willkommen im Beta-Test von Nostalgia. Konten gibt es über den Discord-Bot.", "link": null },
-    { "title": "PvP-Arena im Hafen", "date": "2026-10-05", "text": "Die Arena ist in den Hafen von Gothwaite gezogen. Teleport über jeden Reichs-Teleporter: [PvP Arena].", "link": null },
-    { "title": "Golden Loot Goblin", "date": "2026-10-05", "text": "Ab und zu rennt ein goldener Goblin durch die Arena. Wer ihn erwischt, teilt sich 500 PvE-Tokens.", "link": null }
+    {
+      "title": "Beta test starting",
+      "date": "2026-10-05",
+      "text": "Feel free to join and play.",
+      "link": null
+    },
+    {
+      "title": "Golden Loot Goblin event added",
+      "date": "2026-10-05",
+      "text": "",
+      "link": null
+    },
+    {
+      "title": "Rift event added",
+      "date": "2026-10-05",
+      "text": "",
+      "link": null
+    }
   ]
 }

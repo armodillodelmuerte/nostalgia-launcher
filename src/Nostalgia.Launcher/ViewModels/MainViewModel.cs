@@ -90,7 +90,7 @@ public sealed partial class MainViewModel : ObservableObject
         HasPhase = PhaseRules.HasPhaseUi(phase);
         PhaseBadge = phase?.Badge ?? "";
         PhaseTitle = phase?.Title ?? "";
-        PhaseNotice = phase?.NoticeDe ?? "";
+        PhaseNotice = phase?.NoticeEn ?? "";
         WindowTitle = PhaseRules.WindowTitle(phase, Strings.WindowTitleBeta, Strings.WindowTitlePlain);
         QuickbarsVisible = QuickbarFeature.Visible(Manifest.Features.Quickbars, _ctx.Quickbars);
         if (!QuickbarsVisible && CurrentPage == Page.Quickbars) CurrentPage = Page.Play;
@@ -585,7 +585,7 @@ public sealed partial class MainViewModel : ObservableObject
         OsDescription = RuntimeInformation.OSDescription,
         PhaseId = Manifest.Phase?.Id,
         PhaseNoticeVersion = Manifest.Phase?.NoticeVersion,
-        ManifestSource = _manifestLoad is null ? "nicht geladen" : $"{_manifestLoad.Source} ({_manifestLoad.Location})",
+        ManifestSource = _manifestLoad is null ? "not loaded" : $"{_manifestLoad.Source} ({_manifestLoad.Location})",
         ManifestError = _manifestLoad?.RemoteError,
         ServerHost = Manifest.Server.Host,
         ServerPort = Manifest.Server.LoginPort,
@@ -595,7 +595,7 @@ public sealed partial class MainViewModel : ObservableObject
         ClientVersion = _client?.VersionText,
         ClientStatus = _client?.Status.ToString(),
         AccountName = string.IsNullOrEmpty(AccountName) ? null : AccountName,
-        CredentialStore = _ctx.Platform.CredentialStore.Description + (HasStoredLogin ? ", gespeichert" : ", nicht gespeichert"),
+        CredentialStore = _ctx.Platform.CredentialStore.Description + (HasStoredLogin ? ", stored" : ", not stored"),
         DataFolder = _ctx.Paths.Root,
         LogFolder = _ctx.Paths.Logs,
         RecentErrors = AppLog.Recent.Snapshot(),
@@ -629,5 +629,5 @@ public sealed class NewsItemViewModel(NewsItem item)
     public string Text => item.Text;
     public string? Link => item.Link;
     public bool HasLink => !string.IsNullOrWhiteSpace(item.Link);
-    public string DateText => item.ParsedDate is { } d ? d.ToString("dd.MM.", CultureInfo.GetCultureInfo("de-DE")) : item.Date;
+    public string DateText => item.ParsedDate is { } d ? d.ToString("MMM d", CultureInfo.GetCultureInfo("en-US")) : item.Date;
 }

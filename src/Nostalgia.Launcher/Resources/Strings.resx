@@ -1,112 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- GENERATED from strings.de.json by tools/gen-strings.py - edit the JSON, not this file. -->
+<!-- GENERATED from strings.en.json by tools/gen-strings.py - edit the JSON, not this file. -->
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <data name="WindowTitlePlain" xml:space="preserve"><value>Nostalgia</value></data>
-  <data name="WindowTitleBeta" xml:space="preserve"><value>Nostalgia – PvP-Freeshard (Beta-Test)</value></data>
+  <data name="WindowTitleBeta" xml:space="preserve"><value>Nostalgia – PvP Freeshard (Beta Test)</value></data>
   <data name="Tagline" xml:space="preserve"><value>CLASSIC 1.65 · SHROUDED ISLES</value></data>
-  <data name="NavPlay" xml:space="preserve"><value>Spielen</value></data>
+  <data name="NavPlay" xml:space="preserve"><value>Play</value></data>
   <data name="NavQuickbars" xml:space="preserve"><value>Quickbars</value></data>
-  <data name="NavSettings" xml:space="preserve"><value>Einstellungen</value></data>
-  <data name="BetaStrip" xml:space="preserve"><value>Beta-Test · Fehler und Resets möglich ·</value></data>
-  <data name="BetaStripLink" xml:space="preserve"><value>Feedback im Discord</value></data>
+  <data name="NavSettings" xml:space="preserve"><value>Settings</value></data>
+  <data name="BetaStrip" xml:space="preserve"><value>Beta test · Bugs and resets possible ·</value></data>
+  <data name="BetaStripLink" xml:space="preserve"><value>Feedback on Discord</value></data>
   <data name="FooterLine" xml:space="preserve"><value>Launcher {0} · {1}</value></data>
-  <data name="FooterClientFound" xml:space="preserve"><value>Client {0} gefunden</value></data>
-  <data name="FooterClientMissing" xml:space="preserve"><value>Client nicht gefunden</value></data>
-  <data name="DisclaimerShort" xml:space="preserve"><value>Fan-Projekt. Nicht verbunden mit Broadcom, Electronic Arts oder Mythic Entertainment.</value></data>
+  <data name="FooterClientFound" xml:space="preserve"><value>Client {0} found</value></data>
+  <data name="FooterClientMissing" xml:space="preserve"><value>Client not found</value></data>
+  <data name="DisclaimerShort" xml:space="preserve"><value>Fan project. Not affiliated with Broadcom, Electronic Arts or Mythic Entertainment.</value></data>
   <data name="DisclaimerFull" xml:space="preserve"><value>Nostalgia is a fan-run project and is not affiliated with or endorsed by Broadcom, Electronic Arts or Mythic Entertainment. Dark Age of Camelot is a trademark of its respective owner.</value></data>
-  <data name="StatusChecking" xml:space="preserve"><value>Server wird geprüft …</value></data>
+  <data name="StatusChecking" xml:space="preserve"><value>Checking server …</value></data>
   <data name="StatusOnline" xml:space="preserve"><value>Server online · {0} ms</value></data>
   <data name="StatusOffline" xml:space="preserve"><value>Server offline</value></data>
-  <data name="StatusUnknown" xml:space="preserve"><value>Server unbekannt</value></data>
-  <data name="LoginTitle" xml:space="preserve"><value>Anmelden</value></data>
-  <data name="AccountName" xml:space="preserve"><value>Kontoname</value></data>
-  <data name="Password" xml:space="preserve"><value>Passwort</value></data>
-  <data name="ShowPassword" xml:space="preserve"><value>Anzeigen</value></data>
-  <data name="HidePassword" xml:space="preserve"><value>Verbergen</value></data>
-  <data name="RememberLogin" xml:space="preserve"><value>Login merken</value></data>
-  <data name="PlayButton" xml:space="preserve"><value>SPIELEN</value></data>
-  <data name="NoAccountQ" xml:space="preserve"><value>Noch kein Konto?</value></data>
-  <data name="ForgotQ" xml:space="preserve"><value>Vergessen?</value></data>
-  <data name="AccountNameInvalid" xml:space="preserve"><value>Der Kontoname darf nur Buchstaben und Ziffern enthalten.</value></data>
-  <data name="PlayBlockedUpdate" xml:space="preserve"><value>Bitte zuerst den Launcher aktualisieren.</value></data>
-  <data name="PlayBlockedNoManifest" xml:space="preserve"><value>Keine Serverdaten – Internetverbindung prüfen und Launcher neu starten.</value></data>
-  <data name="PlayStarting" xml:space="preserve"><value>Client wird gestartet …</value></data>
-  <data name="PlayRunning" xml:space="preserve"><value>Der Client läuft.</value></data>
-  <data name="NewsTitle" xml:space="preserve"><value>Neuigkeiten</value></data>
-  <data name="NewsEmpty" xml:space="preserve"><value>Keine Neuigkeiten.</value></data>
-  <data name="NewsMore" xml:space="preserve"><value>Mehr lesen</value></data>
-  <data name="ClientSetupTitle" xml:space="preserve"><value>Client einrichten</value></data>
-  <data name="ClientNotFound" xml:space="preserve"><value>Kein passender Dark-Age-of-Camelot-Client gefunden. Wähle den Ordner deiner Installation (dort liegen game1127.dll und connect.exe).</value></data>
-  <data name="ClientFolderMissing" xml:space="preserve"><value>Der Ordner existiert nicht.</value></data>
-  <data name="ClientNoGameDll" xml:space="preserve"><value>In {0} liegt keine game1127.dll bzw. game.dll. Bitte den Ordner der Client-Installation wählen.</value></data>
-  <data name="ClientUnsupported" xml:space="preserve"><value>{0} hat die Version {1}, Nostalgia braucht {2}. Der Client wurde vermutlich vom offiziellen Patcher (camelot.exe) aktualisiert – nimm eine Installation mit game1127.dll (siehe „Wo bekomme ich den Client?“).</value></data>
-  <data name="ClientNoConnect" xml:space="preserve"><value>Im Ordner fehlt {0}. Es gehört zur Client-Installation des OpenDAoC-Installers und startet den Client für Freeshards.</value></data>
-  <data name="PlatformNotSupported" xml:space="preserve"><value>Auf diesem Betriebssystem kann der Launcher den Client noch nicht starten (Linux/Wine folgt).</value></data>
-  <data name="PickClientTitle" xml:space="preserve"><value>Dark-Age-of-Camelot-Ordner wählen</value></data>
-  <data name="PickClientFolder" xml:space="preserve"><value>Ordner wählen …</value></data>
-  <data name="RetryClientSearch" xml:space="preserve"><value>Erneut suchen</value></data>
-  <data name="WhereIsClient" xml:space="preserve"><value>Wo bekomme ich den Client?</value></data>
-  <data name="ClientNotSet" xml:space="preserve"><value>kein Client gewählt</value></data>
-  <data name="UpdateAvailable" xml:space="preserve"><value>Launcher {0} ist verfügbar.</value></data>
-  <data name="UpdateRequired" xml:space="preserve"><value>Launcher {0} ist nötig – diese Version wird nicht mehr unterstützt.</value></data>
-  <data name="UpdateRequiredUnavailable" xml:space="preserve"><value>Diese Launcher-Version wird nicht mehr unterstützt, es ist aber kein Update hinterlegt. Bitte im Discord melden.</value></data>
-  <data name="UpdateNow" xml:space="preserve"><value>Jetzt aktualisieren</value></data>
-  <data name="UpdateHashMismatch" xml:space="preserve"><value>Das heruntergeladene Update ist beschädigt (Prüfsumme falsch) und wurde verworfen. Bitte später erneut versuchen.</value></data>
-  <data name="UpdateFailed" xml:space="preserve"><value>Update fehlgeschlagen: {0}</value></data>
-  <data name="SettingsTitle" xml:space="preserve"><value>Einstellungen</value></data>
+  <data name="StatusUnknown" xml:space="preserve"><value>Server unknown</value></data>
+  <data name="LoginTitle" xml:space="preserve"><value>Sign in</value></data>
+  <data name="AccountName" xml:space="preserve"><value>Account name</value></data>
+  <data name="Password" xml:space="preserve"><value>Password</value></data>
+  <data name="ShowPassword" xml:space="preserve"><value>Show</value></data>
+  <data name="HidePassword" xml:space="preserve"><value>Hide</value></data>
+  <data name="RememberLogin" xml:space="preserve"><value>Remember login</value></data>
+  <data name="PlayButton" xml:space="preserve"><value>PLAY</value></data>
+  <data name="NoAccountQ" xml:space="preserve"><value>No account yet?</value></data>
+  <data name="ForgotQ" xml:space="preserve"><value>Forgot it?</value></data>
+  <data name="AccountNameInvalid" xml:space="preserve"><value>The account name may only contain letters and digits.</value></data>
+  <data name="PlayBlockedUpdate" xml:space="preserve"><value>Please update the launcher first.</value></data>
+  <data name="PlayBlockedNoManifest" xml:space="preserve"><value>No server data – check your internet connection and restart the launcher.</value></data>
+  <data name="PlayStarting" xml:space="preserve"><value>Starting the client …</value></data>
+  <data name="PlayRunning" xml:space="preserve"><value>The client is running.</value></data>
+  <data name="NewsTitle" xml:space="preserve"><value>News</value></data>
+  <data name="NewsEmpty" xml:space="preserve"><value>No news.</value></data>
+  <data name="NewsMore" xml:space="preserve"><value>Read more</value></data>
+  <data name="ClientSetupTitle" xml:space="preserve"><value>Set up the client</value></data>
+  <data name="ClientNotFound" xml:space="preserve"><value>No matching Dark Age of Camelot client found. Choose the folder of your installation (it contains game1127.dll and connect.exe).</value></data>
+  <data name="ClientFolderMissing" xml:space="preserve"><value>The folder does not exist.</value></data>
+  <data name="ClientNoGameDll" xml:space="preserve"><value>{0} contains no game1127.dll or game.dll. Please choose the folder of the client installation.</value></data>
+  <data name="ClientUnsupported" xml:space="preserve"><value>{0} has version {1}, Nostalgia needs {2}. The client was probably updated by the official patcher (camelot.exe) – use an installation with game1127.dll (see “Where do I get the client?”).</value></data>
+  <data name="ClientNoConnect" xml:space="preserve"><value>{0} is missing in the folder. It comes with the client installation from the OpenDAoC installer and starts the client for freeshards.</value></data>
+  <data name="PlatformNotSupported" xml:space="preserve"><value>On this operating system the launcher can't start the client yet (Linux/Wine is planned).</value></data>
+  <data name="PickClientTitle" xml:space="preserve"><value>Choose the Dark Age of Camelot folder</value></data>
+  <data name="PickClientFolder" xml:space="preserve"><value>Choose folder …</value></data>
+  <data name="RetryClientSearch" xml:space="preserve"><value>Search again</value></data>
+  <data name="WhereIsClient" xml:space="preserve"><value>Where do I get the client?</value></data>
+  <data name="ClientNotSet" xml:space="preserve"><value>no client selected</value></data>
+  <data name="UpdateAvailable" xml:space="preserve"><value>Launcher {0} is available.</value></data>
+  <data name="UpdateRequired" xml:space="preserve"><value>Launcher {0} is required – this version is no longer supported.</value></data>
+  <data name="UpdateRequiredUnavailable" xml:space="preserve"><value>This launcher version is no longer supported, but no update is available. Please report it on Discord.</value></data>
+  <data name="UpdateNow" xml:space="preserve"><value>Update now</value></data>
+  <data name="UpdateHashMismatch" xml:space="preserve"><value>The downloaded update is damaged (checksum mismatch) and was discarded. Please try again later.</value></data>
+  <data name="UpdateFailed" xml:space="preserve"><value>Update failed: {0}</value></data>
+  <data name="SettingsTitle" xml:space="preserve"><value>Settings</value></data>
   <data name="SettingsClient" xml:space="preserve"><value>Client</value></data>
-  <data name="ChangeClientFolder" xml:space="preserve"><value>Ordner ändern …</value></data>
-  <data name="RetryClientSearchShort" xml:space="preserve"><value>Neu suchen</value></data>
-  <data name="SettingsAccount" xml:space="preserve"><value>Konto</value></data>
-  <data name="ReplacePassword" xml:space="preserve"><value>Passwort ersetzen</value></data>
-  <data name="ForgetLogin" xml:space="preserve"><value>Konto wechseln / abmelden</value></data>
-  <data name="SettingsHelp" xml:space="preserve"><value>Hilfe</value></data>
-  <data name="CopySupportInfo" xml:space="preserve"><value>Support-Info kopieren</value></data>
-  <data name="SupportCopied" xml:space="preserve"><value>Support-Info kopiert – im Discord einfügen. Sie enthält kein Passwort.</value></data>
-  <data name="OpenLogs" xml:space="preserve"><value>Logs öffnen</value></data>
-  <data name="OpenDiscord" xml:space="preserve"><value>Discord öffnen</value></data>
+  <data name="ChangeClientFolder" xml:space="preserve"><value>Change folder …</value></data>
+  <data name="RetryClientSearchShort" xml:space="preserve"><value>Search again</value></data>
+  <data name="SettingsAccount" xml:space="preserve"><value>Account</value></data>
+  <data name="ReplacePassword" xml:space="preserve"><value>Replace password</value></data>
+  <data name="ForgetLogin" xml:space="preserve"><value>Switch account / sign out</value></data>
+  <data name="SettingsHelp" xml:space="preserve"><value>Help</value></data>
+  <data name="CopySupportInfo" xml:space="preserve"><value>Copy support info</value></data>
+  <data name="SupportCopied" xml:space="preserve"><value>Support info copied – paste it on Discord. It never contains your password.</value></data>
+  <data name="OpenLogs" xml:space="preserve"><value>Open logs</value></data>
+  <data name="OpenDiscord" xml:space="preserve"><value>Open Discord</value></data>
   <data name="OpenWebsite" xml:space="preserve"><value>Website</value></data>
-  <data name="ShowBetaNotice" xml:space="preserve"><value>Beta-Hinweis</value></data>
-  <data name="Privacy" xml:space="preserve"><value>Datenschutz</value></data>
-  <data name="About" xml:space="preserve"><value>Über</value></data>
-  <data name="Close" xml:space="preserve"><value>Schließen</value></data>
-  <data name="Understood" xml:space="preserve"><value>Verstanden</value></data>
-  <data name="FeedbackChannel" xml:space="preserve"><value>Feedback-Kanal</value></data>
-  <data name="RegisterTitle" xml:space="preserve"><value>Noch kein Konto?</value></data>
-  <data name="RegisterSteps" xml:space="preserve"><value>1. Tritt dem Nostalgia-Discord bei.
-2. Schreib im Kanal: {0} &lt;Name&gt;  (nur Buchstaben und Ziffern)
-3. Der Bot zeigt dir Kontoname und Passwort – kopiere beides hier in den Launcher.</value></data>
-  <data name="RegisterNote" xml:space="preserve"><value>Konten gibt es nur über den Discord-Bot (eins pro Discord-Nutzer). Das Passwort ist zufällig – lass „Login merken“ an, dann musst du es nie tippen.</value></data>
-  <data name="ResetTitle" xml:space="preserve"><value>Passwort vergessen?</value></data>
-  <data name="ResetSteps" xml:space="preserve"><value>1. Schreib im Nostalgia-Discord: {0}
-2. Der Bot zeigt dir ein neues Passwort. Das alte gilt ab sofort nicht mehr.
-3. Füge das neue Passwort hier ein und klicke auf „Spielen“ – der Launcher ersetzt das gespeicherte.</value></data>
-  <data name="EnterNewPassword" xml:space="preserve"><value>Neues Passwort eingeben</value></data>
-  <data name="HintTitle" xml:space="preserve"><value>Der Client wurde gleich wieder geschlossen</value></data>
-  <data name="HintIntro" xml:space="preserve"><value>Vermutlich wurde der Login abgelehnt. Der Client zeigt den Grund oben links im Ladebildschirm (über „Hit ESC to exit game.“):</value></data>
-  <data name="HintWrongPassword" xml:space="preserve"><value>„Your password is incorrect.“ – Passwort falsch: im Discord {0} schreiben und das neue Passwort hier eintragen.</value></data>
-  <data name="HintNotLinked" xml:space="preserve"><value>„Your account has no access to this game.“ – Konto unbekannt oder nicht mit Discord verknüpft: Kontonamen prüfen, sonst einen GM im Discord ansprechen.</value></data>
-  <data name="HintServerOffline" xml:space="preserve"><value>Nur „Hit ESC to exit game.“ ohne Fehlertext – keine Antwort vom Server: offline oder startet gerade neu. Status oben rechts beachten.</value></data>
-  <data name="HintServerOfflineNow" xml:space="preserve"><value>Nur „Hit ESC to exit game.“ ohne Fehlertext – der Server ist gerade offline (Status oben rechts). Später erneut versuchen.</value></data>
-  <data name="LaunchFailedTitle" xml:space="preserve"><value>Der Client ist nicht gestartet</value></data>
-  <data name="LaunchFailedText" xml:space="preserve"><value>connect.exe wurde aufgerufen, aber das Spiel ist nicht erschienen. Häufige Ursachen: ein Virenscanner hat connect.exe blockiert (es verändert den Spielprozess im Speicher), .NET Framework 4 fehlt, oder der Client-Ordner ist unvollständig. Kopiere die Support-Info und melde dich im Discord.</value></data>
-  <data name="AboutTitle" xml:space="preserve"><value>Über Nostalgia</value></data>
+  <data name="ShowBetaNotice" xml:space="preserve"><value>Beta notice</value></data>
+  <data name="Privacy" xml:space="preserve"><value>Privacy</value></data>
+  <data name="About" xml:space="preserve"><value>About</value></data>
+  <data name="Close" xml:space="preserve"><value>Close</value></data>
+  <data name="Understood" xml:space="preserve"><value>Got it</value></data>
+  <data name="FeedbackChannel" xml:space="preserve"><value>Feedback channel</value></data>
+  <data name="RegisterTitle" xml:space="preserve"><value>No account yet?</value></data>
+  <data name="RegisterSteps" xml:space="preserve"><value>1. Join the Nostalgia Discord.
+2. Type in the channel: {0} &lt;name&gt;  (letters and digits only)
+3. The bot shows your account name and password – copy both into the launcher.</value></data>
+  <data name="RegisterNote" xml:space="preserve"><value>Accounts are only created by the Discord bot (one per Discord user). The password is random – keep “Remember login” on and you never have to type it.</value></data>
+  <data name="ResetTitle" xml:space="preserve"><value>Forgot your password?</value></data>
+  <data name="ResetSteps" xml:space="preserve"><value>1. Type in the Nostalgia Discord: {0}
+2. The bot shows you a new password. The old one stops working right away.
+3. Paste the new password here and click “Play” – the launcher replaces the stored one.</value></data>
+  <data name="EnterNewPassword" xml:space="preserve"><value>Enter new password</value></data>
+  <data name="HintTitle" xml:space="preserve"><value>The client closed right away</value></data>
+  <data name="HintIntro" xml:space="preserve"><value>The login was probably refused. The client shows the reason in the top-left corner of the loading screen (above “Hit ESC to exit game.”):</value></data>
+  <data name="HintWrongPassword" xml:space="preserve"><value>“Your password is incorrect.” – wrong password: type {0} on Discord and enter the new password here.</value></data>
+  <data name="HintNotLinked" xml:space="preserve"><value>“Your account has no access to this game.” – account unknown or not linked to Discord: check the account name, otherwise contact a GM on Discord.</value></data>
+  <data name="HintServerOffline" xml:space="preserve"><value>Only “Hit ESC to exit game.” without a reason – no answer from the server: it is offline or restarting. Watch the status at the top right.</value></data>
+  <data name="HintServerOfflineNow" xml:space="preserve"><value>Only “Hit ESC to exit game.” without a reason – the server is offline right now (status at the top right). Try again later.</value></data>
+  <data name="LaunchFailedTitle" xml:space="preserve"><value>The client did not start</value></data>
+  <data name="LaunchFailedText" xml:space="preserve"><value>connect.exe was started, but the game did not appear. Common causes: an antivirus blocked connect.exe (it modifies the game process in memory), .NET Framework 4 is missing, or the client folder is incomplete. Copy the support info and ask on Discord.</value></data>
+  <data name="AboutTitle" xml:space="preserve"><value>About Nostalgia</value></data>
   <data name="AboutVersion" xml:space="preserve"><value>Launcher {0} · Art {1} · Phase {2}</value></data>
-  <data name="AboutNoPhase" xml:space="preserve"><value>keine</value></data>
-  <data name="AboutCredits" xml:space="preserve"><value>Grafik: Nostalgia-Art-Set (eigene Arbeit). Schriften: Cinzel (Copyright 2020 The Cinzel Project Authors) und Inter (Copyright 2016 The Inter Project Authors), beide unter der SIL Open Font License 1.1 – Lizenztexte unten. Der Launcher nutzt nur eine vorhandene Client-Installation und verändert keine Spieldateien.</value></data>
-  <data name="SourceCode" xml:space="preserve"><value>Quellcode</value></data>
-  <data name="PrivacyText" xml:space="preserve"><value>Was der Server speichert: deine Discord-ID und deinen Kontonamen (Verknüpfung durch den Discord-Bot, ein Konto pro Discord-Nutzer), das Passwort nur als Hash, dazu die üblichen Spieldaten (Charaktere, Login-Zeiten, IP-Adresse beim Login).
+  <data name="AboutNoPhase" xml:space="preserve"><value>none</value></data>
+  <data name="AboutCredits" xml:space="preserve"><value>Artwork: Nostalgia art set (original work). Fonts: Cinzel (Copyright 2020 The Cinzel Project Authors) and Inter (Copyright 2016 The Inter Project Authors), both under the SIL Open Font License 1.1 – licence texts below. The launcher only uses an existing client installation and does not change any game files.</value></data>
+  <data name="SourceCode" xml:space="preserve"><value>Source code</value></data>
+  <data name="PrivacyText" xml:space="preserve"><value>What the server stores: your Discord ID and your account name (linked by the Discord bot, one account per Discord user), the password only as a hash, plus the usual game data (characters, login times, IP address at login).
 
-Was der Launcher auf diesem PC speichert ({0}):
-• login.dat – Kontoname und Passwort, verschlüsselt mit Windows (DPAPI, nur dein Windows-Konto kann es lesen). „Konto wechseln / abmelden“ löscht die Datei.
-• settings.json – Client-Ordner, gelesene Hinweise.
-• manifest-cache.json – Serveradresse und Neuigkeiten.
-• logs – Protokolle der letzten Tage, ohne Passwort.
+What the launcher stores on this PC ({0}):
+• login.dat – account name and password, encrypted by Windows (DPAPI, only your Windows account can read it). “Switch account / sign out” deletes the file.
+• settings.json – client folder, notices you have read.
+• manifest-cache.json – server address and news.
+• logs – logs of the last days, without the password.
 
-Der Launcher sendet nichts außer: Abruf des Manifests (GitHub), Status-Prüfung des Login-Ports, Update-Download. Beim Spielstart bekommt der Client Kontoname und Passwort als Startparameter (für andere Programme deines Windows-Kontos sichtbar).</value></data>
-  <data name="QuickbarsNotYet" xml:space="preserve"><value>Der Quickbar-Import ist in dieser Version noch nicht enthalten.</value></data>
+The launcher sends nothing except: fetching the manifest (GitHub), the status check of the login port, and update downloads. When the game starts, the client receives account name and password as start parameters (visible to other programs of your Windows account).</value></data>
+  <data name="QuickbarsNotYet" xml:space="preserve"><value>The quickbar import is not part of this version yet.</value></data>
 </root>

@@ -19,14 +19,29 @@
   "phase": {
     "id": "beta",
     "badge": "BETA",
-    "title": "Nostalgia PvP-Freeshard – Beta-Test",
+    "title": "Nostalgia PvP Freeshard – Beta Test",
     "noticeDe": "Nostalgia ist ein PvP-Freeshard im Beta-Test. Rechne mit Fehlern, Neustarts und Balance-Änderungen. Fortschritt kann vor dem offiziellen Start zurückgesetzt werden. Feedback und Bugs bitte im Discord.",
     "noticeEn": "Nostalgia is a PvP freeshard in beta test. Expect bugs, restarts and balance changes. Progress may be reset before the official launch. Please report feedback and bugs on Discord.",
     "noticeVersion": 2
   },
   "news": [
-    { "title": "Beta-Test gestartet", "date": "2026-10-05", "text": "Willkommen im Beta-Test von Nostalgia. Konten gibt es über den Discord-Bot.", "link": null },
-    { "title": "PvP-Arena im Hafen", "date": "2026-10-05", "text": "Die Arena ist in den Hafen von Gothwaite gezogen. Teleport über jeden Reichs-Teleporter: [PvP Arena].", "link": null },
-    { "title": "Golden Loot Goblin", "date": "2026-10-05", "text": "Ab und zu rennt ein goldener Goblin durch die Arena. Wer ihn erwischt, teilt sich 500 PvE-Tokens.", "link": null }
+    {
+      "title": "Beta test starting",
+      "date": "2026-10-05",
+      "text": "Feel free to join and play.",
+      "link": null
+    },
+    {
+      "title": "Golden Loot Goblin event added",
+      "date": "2026-10-05",
+      "text": "",
+      "link": null
+    },
+    {
+      "title": "Rift event added",
+      "date": "2026-10-05",
+      "text": "",
+      "link": null
+    }
   ]
 }

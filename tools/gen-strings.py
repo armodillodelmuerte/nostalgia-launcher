@@ -1,4 +1,4 @@
-"""Builds src/Nostalgia.Launcher/Resources/Strings.resx from strings.de.json (the editable source, UTF-8).
+"""Builds src/Nostalgia.Launcher/Resources/Strings.resx from strings.en.json (the editable source, UTF-8).
 
 Run after changing the JSON:  python tools/gen-strings.py
 """
@@ -7,9 +7,9 @@ import pathlib
 from xml.sax.saxutils import escape
 
 root = pathlib.Path(__file__).resolve().parent.parent / "src" / "Nostalgia.Launcher" / "Resources"
-data = json.loads((root / "strings.de.json").read_text(encoding="utf-8"))
+data = json.loads((root / "strings.en.json").read_text(encoding="utf-8"))
 head = """<?xml version="1.0" encoding="utf-8"?>
-<!-- GENERATED from strings.de.json by tools/gen-strings.py - edit the JSON, not this file. -->
+<!-- GENERATED from strings.en.json by tools/gen-strings.py - edit the JSON, not this file. -->
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>

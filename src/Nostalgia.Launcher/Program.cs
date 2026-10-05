@@ -23,7 +23,7 @@ internal static class Program
     [STAThread]
     public static int Main(string[] args)
     {
-        CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo("de-DE");
+        CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo("en-US");
         var paths = AppPaths.Default();
         AppLog.Init(paths.Logs);
 

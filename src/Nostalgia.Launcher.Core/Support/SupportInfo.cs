@@ -32,18 +32,18 @@ public static class SupportInfo
     public static string Build(SupportInfoData d, DateTimeOffset now)
     {
         var sb = new StringBuilder();
-        sb.AppendLine("Nostalgia Launcher – Support-Info");
-        sb.AppendLine($"Zeit: {now:yyyy-MM-dd HH:mm:ss zzz}");
-        sb.AppendLine($"Launcher: {d.LauncherVersion} | Art: {d.ArtVersion} | Plattform: {d.Platform} ({d.OsDescription})");
-        sb.AppendLine($"Phase: {(d.PhaseId is null ? "keine" : $"{d.PhaseId} (Hinweis v{d.PhaseNoticeVersion})")}");
-        sb.AppendLine($"Manifest: {d.ManifestSource}{(d.ManifestError is null ? "" : $" – Fehler: {d.ManifestError}")}");
-        sb.AppendLine($"Server: {d.ServerHost ?? "-"}:{d.ServerPort?.ToString() ?? "-"} – {d.ServerStatus ?? "unbekannt"}");
+        sb.AppendLine("Nostalgia Launcher – support info");
+        sb.AppendLine($"Time: {now:yyyy-MM-dd HH:mm:ss zzz}");
+        sb.AppendLine($"Launcher: {d.LauncherVersion} | Art: {d.ArtVersion} | Platform: {d.Platform} ({d.OsDescription})");
+        sb.AppendLine($"Phase: {(d.PhaseId is null ? "none" : $"{d.PhaseId} (notice v{d.PhaseNoticeVersion})")}");
+        sb.AppendLine($"Manifest: {d.ManifestSource}{(d.ManifestError is null ? "" : $" – error: {d.ManifestError}")}");
+        sb.AppendLine($"Server: {d.ServerHost ?? "-"}:{d.ServerPort?.ToString() ?? "-"} – {d.ServerStatus ?? "unknown"}");
         sb.AppendLine($"Client: {d.ClientFolder ?? "-"} | {d.ClientDll ?? "-"} {d.ClientVersion ?? ""} | {d.ClientStatus ?? "-"}");
-        sb.AppendLine($"Konto: {d.AccountName ?? "-"} (Passwort wird nie angezeigt) | Speicher: {d.CredentialStore}");
-        sb.AppendLine($"Daten: {d.DataFolder}");
+        sb.AppendLine($"Account: {d.AccountName ?? "-"} (the password is never shown) | Store: {d.CredentialStore}");
+        sb.AppendLine($"Data: {d.DataFolder}");
         sb.AppendLine($"Logs: {d.LogFolder}");
-        sb.AppendLine("Letzte Fehler:");
-        if (d.RecentErrors.Count == 0) sb.AppendLine("  (keine)");
+        sb.AppendLine("Recent errors:");
+        if (d.RecentErrors.Count == 0) sb.AppendLine("  (none)");
         foreach (var e in d.RecentErrors) sb.AppendLine("  " + e);
         return sb.ToString();
     }

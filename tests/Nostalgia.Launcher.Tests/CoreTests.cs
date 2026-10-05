@@ -281,8 +281,8 @@ public class MiscTests
         }, DateTimeOffset.Now);
         Assert.Contains("Launcher: 0.1.0", text);
         Assert.Contains("Art: 57cfded74e63", text);
-        Assert.Contains("Phase: beta (Hinweis v1)", text);
-        Assert.Contains("Konto: Bob", text);
+        Assert.Contains("Phase: beta (notice v1)", text);
+        Assert.Contains("Account: Bob", text);
         Assert.Contains("e1", text);
         Assert.DoesNotContain(typeof(SupportInfoData).GetProperties(), p => p.Name.Contains("Password", StringComparison.OrdinalIgnoreCase));
     }

@@ -32,7 +32,7 @@ public static class BuildInfo
                     return line["art-commit:".Length..].Trim();
         }
         catch (Exception) { }
-        return "unbekannt";
+        return "unknown";
     }
 
     public static string ReadAsset(string relative)

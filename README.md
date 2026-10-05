@@ -33,7 +33,7 @@ dotnet publish src/Nostalgia.Launcher -c Release -r win-x64 -o publish/win-x64  
 |---|---|
 | `src/Nostalgia.Launcher.Core` | Platform-free logic: manifest, beta notice, versions, update planning/verification, client validation (own PE version reader), status probe, settings, support info, platform interfaces |
 | `src/Nostalgia.Launcher.Platform` | Windows implementation (registry search, connect.exe start, process watcher, DPAPI store) and Linux stubs |
-| `src/Nostalgia.Launcher` | Avalonia UI (MVVM, CommunityToolkit.Mvvm), `Resources/strings.de.json` → `Strings.resx` (`python tools/gen-strings.py`), `Assets/Brand` (synced art) |
+| `src/Nostalgia.Launcher` | Avalonia UI (MVVM, CommunityToolkit.Mvvm), UI language English: `Resources/strings.en.json` → `Strings.resx` (`python tools/gen-strings.py`), `Assets/Brand` (synced art) |
 | `tests/` | xUnit + Avalonia headless tests, staging manifests (`tests/manifests`) |
 | `manifest/launcher.json` | the live manifest |
 | `tools/sync-art.ps1` | copies the brand files from the (private) art repo into `Assets/Brand` and writes `ART_VERSION.txt` |

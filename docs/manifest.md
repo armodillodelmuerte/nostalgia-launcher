@@ -14,7 +14,7 @@ The URL is baked into the build (`BuiltInDefaults.ManifestUrl`). Edit `manifest/
 |---|---|
 | Remote manifest loads and is valid | used, and cached as `%LOCALAPPDATA%\Nostalgia\manifest-cache.json` |
 | Remote fails (offline, timeout 8 s, HTTP error) or is invalid | last cached copy; the reason is in the log and the support info |
-| Never loaded (offline first start, no cache) | built-in fallback: no server (Spielen disabled), launcher **0.x** builds show the built-in beta text, 1.x builds no phase |
+| Never loaded (offline first start, no cache) | built-in fallback: no server (Play disabled), launcher **0.x** builds show the built-in beta text, 1.x builds no phase |
 
 Comments (`//`, `/* */`) and trailing commas are allowed. Unknown fields are ignored, so new fields never break old launchers. A higher `schemaVersion` is still read (known fields only). Testing: `Nostalgia.exe --manifest <file or URL>` (or env `NOSTALGIA_MANIFEST`) uses another manifest – see `tests/manifests/`.
 
@@ -32,14 +32,14 @@ A manifest is **rejected** (→ cache) when: `schemaVersion` < 1, `server.host` 
 | `server.quickbarPort` | int | 10380 | quickbar endpoint (module not built yet) |
 | `client.supportedVersions` | int[] | [1127] | accepted game.dll versions (1.127 = 1127, read from the PE version) |
 | `client.dllNames` | string[] | ["game1127.dll", "game.dll"] | dll names searched in the client folder, in order |
-| `client.infoUrl` | url | OpenDAoC client page | "Wo bekomme ich den Client?" |
-| `launcher.minimumVersion` | version | 0.0.0 | below it: update required, Spielen disabled |
+| `client.infoUrl` | url | OpenDAoC client page | "Where do I get the client?" |
+| `launcher.minimumVersion` | version | 0.0.0 | below it: update required, Play disabled |
 | `launcher.latestVersion` | version | 0.0.0 | newer than the running build → update offered |
 | `launcher.downloadUrl` | url | null | the release asset `Nostalgia.exe` (HTTPS only; HTTP only to localhost for tests) |
 | `launcher.sha256` | hex | null | SHA-256 of that file; without it no update is offered |
 | `launcher.releaseNotesUrl` | url | null | informational |
 | `links.website` | url | null | "Website" button (hidden when null) |
-| `links.discordInvite` | url | null | "Discord öffnen" (register/reset help) |
+| `links.discordInvite` | url | null | "Open Discord" (register/reset help) |
 | `links.feedbackChannel` | url | null | beta strip link and dialog button (`https://discord.com/channels/<guild>/<channel>`) |
 | `links.privacy` | url | null | reserved (the launcher has its own privacy text) |
 | `bot.registerCommand` / `bot.resetCommand` | string | /register, /reset | shown in the help texts |
@@ -55,7 +55,7 @@ Versions: `major.minor.patch` with optional `-pre` (`0.2.0-rc1` < `0.2.0`), lead
 "phase": {
   "id": "beta",
   "badge": "BETA",
-  "title": "Nostalgia PvP-Freeshard – Beta-Test",
+  "title": "Nostalgia PvP Freeshard – Beta Test",
   "noticeDe": "Nostalgia ist ein PvP-Freeshard im Beta-Test. …",
   "noticeEn": "Nostalgia is a PvP freeshard in beta test. …",
   "noticeVersion": 1
@@ -65,9 +65,9 @@ Versions: `major.minor.patch` with optional `-pre` (`0.2.0-rc1` < `0.2.0`), lead
 | Phase present | Phase `null` / missing |
 |---|---|
 | gold badge (`badge`) next to the logo, drawn in the UI | no badge |
-| window title `Nostalgia – PvP-Freeshard (Beta-Test)` (id `beta`; other ids: `Nostalgia – <title>`) | `Nostalgia` |
-| footer strip "Beta-Test · Fehler und Resets möglich · Feedback im Discord" (link = `links.feedbackChannel`) | no strip |
-| notice dialog (title + `noticeDe`, button "Verstanden") on first start and whenever `noticeVersion` rises; stored per `id` in `settings.json` | no dialog |
+| window title `Nostalgia – PvP Freeshard (Beta Test)` (id `beta`; other ids: `Nostalgia – <title>`) | `Nostalgia` |
+| footer strip "Beta test · Bugs and resets possible · Feedback on Discord" (link = `links.feedbackChannel`) | no strip |
+| notice dialog (title + `noticeEn` – the UI is English; `noticeDe` is kept for the German texts elsewhere – button "Got it") on first start and whenever `noticeVersion` rises; stored per `id` in `settings.json` | no dialog |
 | support info and About show `id (v<noticeVersion>)` | "keine" |
 
 The texts are the same as in nostalgia-ops `config/beta.json` (Discord bot, in-game greeting) – keep them identical when changing one.

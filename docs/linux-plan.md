@@ -1,6 +1,6 @@
 # Linux plan (Wine)
 
-Status 0.1.0: the launcher **builds and starts on Linux** (`dotnet publish src/Nostalgia.Launcher -c Release -r linux-x64`): manifest, news, server status, beta UI and self-update logic are platform-free. Finding the client, starting it and storing the login are stubs (`src/Nostalgia.Launcher.Platform/Linux`); the UI then says "Auf diesem Betriebssystem kann der Launcher den Client noch nicht starten". This page lists what a real implementation needs.
+Status 0.1.0: the launcher **builds and starts on Linux** (`dotnet publish src/Nostalgia.Launcher -c Release -r linux-x64`): manifest, news, server status, beta UI and self-update logic are platform-free. Finding the client, starting it and storing the login are stubs (`src/Nostalgia.Launcher.Platform/Linux`); the UI then says "On this operating system the launcher can't start the client yet". This page lists what a real implementation needs.
 
 ## What already is platform-free
 

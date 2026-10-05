@@ -47,7 +47,7 @@ public sealed class WineProcessWatcher : IProcessWatcher
 public sealed class SessionOnlyCredentialStore : ICredentialStore
 {
     private LoginCredential? _login;
-    public string Description => "nur Sitzung (Linux: libsecret folgt)";
+    public string Description => "session only (Linux: libsecret planned)";
     public LoginCredential? Load() => _login;
     public void Save(LoginCredential login) => _login = login;
     public void Delete() => _login = null;

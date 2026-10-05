@@ -167,7 +167,7 @@
                           <TextBlock Text="{Binding DateText}" FontSize="12" Opacity="0.5" Margin="0,1,0,0" />
                           <StackPanel Grid.Column="1" Spacing="2">
                             <TextBlock Text="{Binding Title}" FontFamily="{StaticResource UiFontSemiBold}" FontSize="13" TextWrapping="Wrap" />
-                            <TextBlock Classes="body" Text="{Binding Text}" Opacity="0.9" />
+                            <TextBlock Classes="body" Text="{Binding Text}" Opacity="0.9" IsVisible="{Binding Text, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
                             <Button Classes="link" IsVisible="{Binding HasLink}" Content="{x:Static res:Strings.NewsMore}"
                                     Command="{Binding $parent[Window].((vm:MainViewModel)DataContext).OpenNewsCommand}"
                                     CommandParameter="{Binding}" />
