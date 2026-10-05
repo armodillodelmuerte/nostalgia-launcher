@@ -1,13 +1,11 @@
 // Live manifest of the Nostalgia launcher – every installed launcher reads this file from the main branch:
 // https://raw.githubusercontent.com/armodillodelmuerte/nostalgia-launcher/main/manifest/launcher.json
 // Schema and how-tos: docs/manifest.md. Changes go live ~5 minutes after the push (GitHub raw cache).
-// OPEN before the beta starts: server.host ("nostalgia.invalid" is a placeholder that never resolves),
-// links.discordInvite and links.feedbackChannel.
 {
   "schemaVersion": 1,
   "server": {
     "name": "Nostalgia",
-    "host": "nostalgia.invalid",
+    "host": "connect.nostalgiapvp.com",
     "loginPort": 10300,
     "regionPort": 10400,
     "quickbarPort": 10380
@@ -26,8 +24,8 @@
   },
   "links": {
     "website": null,
-    "discordInvite": null,
-    "feedbackChannel": null,
+    "discordInvite": "https://discord.gg/3QWDbpv9J4",
+    "feedbackChannel": "https://discord.com/channels/1556643889010446478/1556648047167930378",
     "privacy": null
   },
   "bot": {
