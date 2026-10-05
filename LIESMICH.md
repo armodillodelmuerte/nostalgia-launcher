@@ -1,0 +1,56 @@
+# Nostalgia Launcher – Kurzanleitung
+
+> **Nostalgia ist im Beta-Test.**
+> Nostalgia ist ein PvP-Freeshard im Beta-Test. Rechne mit Fehlern, Neustarts und Balance-Änderungen. Fortschritt kann vor dem offiziellen Start zurückgesetzt werden. Feedback und Bugs bitte im Discord – im Feedback-Kanal (Link im Launcher unten links: „Feedback im Discord“).
+
+## 1. Client besorgen
+
+Du brauchst einen Dark-Age-of-Camelot-Client mit **game1127.dll** und **connect.exe** im Ordner. Den bekommst du über den Installer auf der [OpenDAoC-Client-Seite](https://www.opendaoc.com/docs/client/). Der Launcher lädt keine Spieldateien herunter und verändert keine.
+
+**Wichtig:** Starte nicht `camelot.exe` (den offiziellen Patcher). Der aktualisiert den Client auf die aktuelle Live-Version, und dann passt er nicht mehr.
+
+## 2. Launcher laden und starten
+
+1. `Nostalgia.exe` von der Release-Seite herunterladen und in einen eigenen Ordner legen, z. B. `Dokumente\Nostalgia`. Nicht in „Programme“ legen, sonst kann er sich nicht selbst aktualisieren.
+2. Starten. Windows zeigt beim ersten Mal **„Der Computer wurde durch Windows geschützt“**, weil der Launcher nicht signiert ist. Klicke auf **„Weitere Informationen“** und dann auf **„Trotzdem ausführen“**.
+3. Der Launcher sucht den Client selbst. Findet er ihn nicht, wähle den Client-Ordner mit **„Ordner wählen …“**.
+4. Lies den Beta-Hinweis und klicke auf **„Verstanden“**.
+
+## 3. Konto anlegen (Discord)
+
+1. Tritt dem Nostalgia-Discord bei (Button „Discord öffnen“ im Launcher).
+2. Schreib im Kanal: `/register <Name>`. Der Name darf nur Buchstaben und Ziffern enthalten, und jeder Discord-Nutzer bekommt ein Konto.
+3. Der Bot zeigt dir **Kontoname und Passwort**. Kopiere beides in den Launcher. Leerzeichen und Zeilenumbrüche beim Einfügen sind kein Problem.
+4. Lass „Login merken“ an. Das Passwort ist zufällig und wird verschlüsselt gespeichert, du musst es nie tippen.
+5. Klicke auf **SPIELEN**. Der Client startet direkt in die Charakterauswahl.
+
+## 4. Passwort verloren oder neuer PC
+
+- Schreib im Discord `/reset`. Der Bot zeigt ein neues Passwort, das alte gilt dann nicht mehr.
+- Im Launcher auf „/reset“ und dann auf **„Neues Passwort eingeben“** klicken (oder unter Einstellungen auf „Passwort ersetzen“). Neues Passwort einfügen und auf SPIELEN klicken; der Launcher ersetzt das gespeicherte.
+- Auf einem neuen PC genauso vorgehen. Das gespeicherte Login gilt nur für deinen Windows-Benutzer auf diesem PC.
+
+## 5. Wenn der Client gleich wieder zugeht
+
+Der Client zeigt den Grund oben links im Ladebildschirm, über „Hit ESC to exit game.“. Danach zeigt der Launcher einen Hinweis:
+
+| Meldung im Client | Bedeutung | Was tun |
+|---|---|---|
+| Your password is incorrect. | Passwort falsch | `/reset` im Discord, neues Passwort im Launcher eintragen |
+| Your account has no access to this game. | Konto unbekannt oder nicht mit Discord verknüpft | Kontonamen prüfen, sonst einen GM im Discord ansprechen |
+| nur „Hit ESC to exit game.“ | Server nicht erreichbar | Status oben rechts im Launcher prüfen, später nochmal |
+
+Windows-Firewall: Wenn sie beim ersten Start fragt, erlaube den Zugriff für das Spiel. Wenn dein Virenscanner `connect.exe` meldet: Die Datei gehört zur Client-Installation und startet den Client für Freeshards.
+
+## 6. Quickbars nach einem Respec
+
+Der Quickbar-Import mit dem Code des Master Trainers kommt in einer späteren Version. Das Wiederherstellen eines Quickbar-Backups wird dann hier beschrieben.
+
+## 7. Hilfe
+
+Unter **Einstellungen** findest du **„Support-Info kopieren“**. Füge den Text im Discord ein; er enthält Versionen und Pfade, aber nie dein Passwort. Unter „Logs öffnen“ liegen die Protokolle der letzten Tage.
+
+Datenschutz: Der Server speichert deine Discord-ID und deinen Kontonamen. Der Launcher speichert nur auf deinem PC: das verschlüsselte Login, die Einstellungen und die Logs (Details im Launcher unter „Datenschutz“).
+
+---
+Nostalgia is a fan-run project and is not affiliated with or endorsed by Broadcom, Electronic Arts or Mythic Entertainment. Dark Age of Camelot is a trademark of its respective owner.

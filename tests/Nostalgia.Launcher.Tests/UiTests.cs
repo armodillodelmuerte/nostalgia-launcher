@@ -1,3 +1,4 @@
+using Avalonia.VisualTree;
 using Avalonia;
 using Avalonia.Headless;
 using Avalonia.Headless.XUnit;
@@ -206,7 +207,7 @@ public class UiTests
 
         using var data = new TempDir();
         using var client = new TempDir();
-        var platform = new FakePlatform(client.Path) { Stored = new LoginCredential("ben", "Xk7pQ2mZr9TvBn4c") };
+        var platform = new FakePlatform(client.Path) { Stored = new LoginCredential("Spieler1", "Xk7pQ2mZr9TvBn4c") };
 
         async Task Shot(string manifest, Action<MainViewModel>? arrange, string name)
         {
@@ -216,6 +217,7 @@ public class UiTests
                 var window = new MainWindow { DataContext = vm, Width = w, Height = h };
                 window.Show();
                 await vm.InitializeAsync();
+                vm.ClientFolderText = @"C:\OpenDAoC (game1127.dll, 1.127)"; // no local temp path in published screenshots
                 arrange?.Invoke(vm);
                 for (int i = 0; i < 30; i++) { Dispatcher.UIThread.RunJobs(); await Task.Delay(50); }
                 var frame = window.CaptureRenderedFrame();
@@ -230,5 +232,33 @@ public class UiTests
         await Shot("local-staging.json", vm => { vm.CurrentOverlay = Overlay.None; vm.ShowSettingsCommand.Execute(null); }, "04-settings");
         await Shot("local-staging.json", vm => vm.CurrentOverlay = Overlay.RegisterHelp, "05-register-help");
         await Shot("local-phase-null.json", vm => vm.CurrentOverlay = Overlay.None, "06-phase-null");
+    }
+}
+
+public class UiClickTests
+{
+    [AvaloniaFact]
+    public async Task Clicking_the_play_button_launches()
+    {
+        using var data = new TempDir();
+        using var client = new TempDir();
+        var platform = new FakePlatform(client.Path) { GameLifetime = TimeSpan.FromMinutes(5) };
+        var paths = new AppPaths(data.Path);
+        var http = new HttpClient();
+        var vm = new MainViewModel(new LauncherContext(paths, platform, new QuickbarServiceUnavailable(),
+            new ManifestService(new HttpManifestFetcher(http), paths.ManifestCache, new LauncherVersion(0, 1, 0)),
+            Path.Combine(AppContext.BaseDirectory, "manifests", "local-phase-null.json"), new UpdateInstaller(http, paths.Updates), new LauncherVersion(0, 1, 0), "test"));
+        var window = new MainWindow { DataContext = vm, Width = 1280, Height = 720 };
+        window.Show();
+        await vm.InitializeAsync();
+        vm.AccountName = "Bob1";
+        vm.Password = "pw";
+        Dispatcher.UIThread.RunJobs();
+        var button = window.GetVisualDescendants().OfType<Avalonia.Controls.Button>().First(b => b.Classes.Contains("gold") && b is not Avalonia.Controls.Primitives.ToggleButton);
+        Assert.True(button.IsEffectivelyEnabled);
+        var peer = Avalonia.Automation.Peers.ControlAutomationPeer.CreatePeerForElement(button);
+        ((Avalonia.Automation.Provider.IInvokeProvider)peer).Invoke();
+        for (int i = 0; i < 10; i++) { Dispatcher.UIThread.RunJobs(); await Task.Delay(20); }
+        Assert.Single(platform.Launches);
     }
 }

@@ -1,0 +1,71 @@
+# Release build: push a tag v<major>.<minor>.<patch> → tests, single-file Nostalgia.exe, zip, SHA-256,
+# manifest snippet, and a DRAFT release with these files. Publishing the draft stays a manual step (docs/release.md).
+# Uses only the committed Assets/Brand files (synced from the private art repo with tools/sync-art.ps1).
+name: release
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Version from tag
+        id: v
+        shell: pwsh
+        run: |
+          $v = '${{ github.ref_name }}'.TrimStart('v')
+          "version=$v" >> $env:GITHUB_OUTPUT
+
+      - name: Test
+        run: dotnet test -c Release
+
+      - name: Publish
+        run: dotnet publish src/Nostalgia.Launcher -c Release -r win-x64 -p:Version=${{ steps.v.outputs.version }} -o out
+
+      - name: Package
+        shell: pwsh
+        run: |
+          $v = '${{ steps.v.outputs.version }}'
+          New-Item -ItemType Directory dist | Out-Null
+          Copy-Item out/Nostalgia.exe dist/Nostalgia.exe
+          New-Item -ItemType Directory pkg | Out-Null
+          Copy-Item out/Nostalgia.exe, LIESMICH.md pkg/
+          New-Item -ItemType Directory pkg/licenses | Out-Null
+          Copy-Item src/Nostalgia.Launcher/Assets/Brand/Fonts/OFL-*.txt pkg/licenses/
+          Compress-Archive -Path pkg/* -DestinationPath "dist/Nostalgia-$v-win-x64.zip"
+          $exeHash = (Get-FileHash dist/Nostalgia.exe -Algorithm SHA256).Hash.ToLower()
+          $zipHash = (Get-FileHash "dist/Nostalgia-$v-win-x64.zip" -Algorithm SHA256).Hash.ToLower()
+          "$exeHash  Nostalgia.exe`n$zipHash  Nostalgia-$v-win-x64.zip" | Set-Content dist/SHA256SUMS.txt -Encoding ascii
+          $url = "https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/Nostalgia.exe"
+          @"
+          // Paste into manifest/launcher.json → "launcher" AFTER publishing the release:
+          "latestVersion": "$v",
+          "downloadUrl": "$url",
+          "sha256": "$exeHash",
+          "@ | Set-Content dist/manifest-snippet.txt -Encoding utf8
+          Get-Content dist/SHA256SUMS.txt, dist/manifest-snippet.txt
+
+      - name: Draft release
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          name: Nostalgia Launcher ${{ steps.v.outputs.version }}
+          body: |
+            Nostalgia Launcher ${{ steps.v.outputs.version }} – Beta-Test.
+            SHA-256 siehe SHA256SUMS.txt. Unsigniert: Windows SmartScreen → „Weitere Informationen“ → „Trotzdem ausführen“.
+          files: |
+            dist/Nostalgia.exe
+            dist/Nostalgia-${{ steps.v.outputs.version }}-win-x64.zip
+            dist/SHA256SUMS.txt
+            dist/manifest-snippet.txt

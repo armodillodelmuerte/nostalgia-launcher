@@ -12,6 +12,8 @@
     <Copyright>Nostalgia fan project</Copyright>
     <!-- No git hash in InformationalVersion (keeps the version compare simple). -->
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <!-- Release: symbols inside the dlls/exe, so publish yields a single Nostalgia.exe. -->
+    <DebugType Condition="'$(Configuration)' == 'Release'">embedded</DebugType>
   </PropertyGroup>
   <PropertyGroup>
     <AvaloniaVersion>11.3.22</AvaloniaVersion>

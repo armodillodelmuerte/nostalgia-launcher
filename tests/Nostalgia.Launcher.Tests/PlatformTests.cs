@@ -54,3 +54,16 @@ public class CredentialStoreTests
         Assert.False(new LinuxPlatformServices().IsSupported);
     }
 }
+
+public class ProcessWatcherTests
+{
+    [Theory]
+    [InlineData("game1127.dll", "game1127.dll")] // Windows strips only .exe (measured with the real client)
+    [InlineData("game.dll", "game.dll")]
+    [InlineData("camelot.exe", "camelot")]
+    public void Process_name_for_the_game_image(string dll, string expected)
+    {
+        if (!OperatingSystem.IsWindows()) return;
+        Assert.Equal(expected, WindowsProcessWatcher.ProcessNameFor(dll));
+    }
+}

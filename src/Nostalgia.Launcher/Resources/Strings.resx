@@ -87,11 +87,11 @@
 3. Füge das neue Passwort hier ein und klicke auf „Spielen“ – der Launcher ersetzt das gespeicherte.</value></data>
   <data name="EnterNewPassword" xml:space="preserve"><value>Neues Passwort eingeben</value></data>
   <data name="HintTitle" xml:space="preserve"><value>Der Client wurde gleich wieder geschlossen</value></data>
-  <data name="HintIntro" xml:space="preserve"><value>Vermutlich wurde der Login abgelehnt. Mögliche Ursachen:</value></data>
+  <data name="HintIntro" xml:space="preserve"><value>Vermutlich wurde der Login abgelehnt. Der Client zeigt den Grund oben links im Ladebildschirm (über „Hit ESC to exit game.“):</value></data>
   <data name="HintWrongPassword" xml:space="preserve"><value>„Your password is incorrect.“ – Passwort falsch: im Discord {0} schreiben und das neue Passwort hier eintragen.</value></data>
   <data name="HintNotLinked" xml:space="preserve"><value>„Your account has no access to this game.“ – Konto unbekannt oder nicht mit Discord verknüpft: Kontonamen prüfen, sonst einen GM im Discord ansprechen.</value></data>
-  <data name="HintServerOffline" xml:space="preserve"><value>Keine Antwort vom Server – er ist offline oder startet gerade neu. Status oben rechts beachten.</value></data>
-  <data name="HintServerOfflineNow" xml:space="preserve"><value>Der Server ist gerade offline (Status oben rechts) – später erneut versuchen.</value></data>
+  <data name="HintServerOffline" xml:space="preserve"><value>Nur „Hit ESC to exit game.“ ohne Fehlertext – keine Antwort vom Server: offline oder startet gerade neu. Status oben rechts beachten.</value></data>
+  <data name="HintServerOfflineNow" xml:space="preserve"><value>Nur „Hit ESC to exit game.“ ohne Fehlertext – der Server ist gerade offline (Status oben rechts). Später erneut versuchen.</value></data>
   <data name="LaunchFailedTitle" xml:space="preserve"><value>Der Client ist nicht gestartet</value></data>
   <data name="LaunchFailedText" xml:space="preserve"><value>connect.exe wurde aufgerufen, aber das Spiel ist nicht erschienen. Häufige Ursachen: ein Virenscanner hat connect.exe blockiert (es verändert den Spielprozess im Speicher), .NET Framework 4 fehlt, oder der Client-Ordner ist unvollständig. Kopiere die Support-Info und melde dich im Discord.</value></data>
   <data name="AboutTitle" xml:space="preserve"><value>Über Nostalgia</value></data>
