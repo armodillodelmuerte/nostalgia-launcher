@@ -17,9 +17,9 @@
   },
   "launcher": {
     "minimumVersion": "0.1.0",
-    "latestVersion": "0.1.0",
-    "downloadUrl": "https://github.com/armodillodelmuerte/nostalgia-launcher/releases/download/v0.1.0/Nostalgia.exe",
-    "sha256": "82a48b5b0a6a299e595e7c6a20314da44ce2ba5a97c596bf4dc7c4ae561561cf",
+    "latestVersion": "0.2.0",
+    "downloadUrl": "https://github.com/armodillodelmuerte/nostalgia-launcher/releases/download/v0.2.0/Nostalgia.exe",
+    "sha256": "41307c1f61d253e05f8d3d3524d475b12b2fb2ae067732dc8ec2ede3b31886e4",
     "releaseNotesUrl": "https://github.com/armodillodelmuerte/nostalgia-launcher/releases"
   },
   "links": {
