@@ -33,7 +33,7 @@
     "resetCommand": "/reset"
   },
   "features": {
-    "quickbars": false
+    "quickbars": true
   },
   "phase": {
     "id": "beta",
