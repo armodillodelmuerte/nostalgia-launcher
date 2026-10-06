@@ -14,7 +14,7 @@ Player guide (German): [LIESMICH.md](LIESMICH.md).
 - Starts the client by command line only: `connect.exe "<game dll>" <host>:<port> <account> <password>` from the client folder, exactly like the OpenDAoC launcher does. Note: command-line arguments are visible to other processes of the same user.
 - Never creates accounts and never talks to Discord's API: accounts come from the Discord bot (`/register`, `/reset`). The launcher stores account name + password encrypted with Windows DPAPI.
 - Reads a remote manifest ([docs/manifest.md](docs/manifest.md)) for server address, links, news, launcher updates and the beta notice – so a server move or the end of the beta needs no new launcher.
-- Quickbar import (Master Trainer code) is planned; the module is not part of this version (interface + manifest flag only).
+- **Quickbars on Play:** when a player picks a spec preset at the Master Trainer, the server stores a quickbar layout for that character. On Play the launcher asks the server (`POST <quickbarUrl>/quickbar/pending` with the account login, HTTPS, 5 s timeout), writes bars 1–3 of each pending character into the client's character INI (`%APPDATA%\Electronic Arts\Dark Age of Camelot\<settings>\<Name>-5.ini`; all ten banks of each bar are replaced, everything else in the file stays byte for byte) and confirms the written ones (`/quickbar/ack`); then it starts the game. Server problems never block Play (a short notice instead); with layouts pending and a client running it refuses and asks to close the game first. Switched on by the manifest (`features.quickbars`, `server.quickbarUrl`) – see [docs/manifest.md](docs/manifest.md#quickbars-on-play).
 
 ## Build
 
@@ -31,8 +31,8 @@ dotnet publish src/Nostalgia.Launcher -c Release -r win-x64 -o publish/win-x64  
 
 | Path | What |
 |---|---|
-| `src/Nostalgia.Launcher.Core` | Platform-free logic: manifest, beta notice, versions, update planning/verification, client validation (own PE version reader), status probe, settings, support info, platform interfaces |
-| `src/Nostalgia.Launcher.Platform` | Windows implementation (registry search, connect.exe start, process watcher, DPAPI store) and Linux stubs |
+| `src/Nostalgia.Launcher.Core` | Platform-free logic: manifest, beta notice, versions, update planning/verification, client validation (own PE version reader), status probe, settings, support info, quickbars (endpoint client, INI writer, `paths.dat` rules, Play step), platform interfaces |
+| `src/Nostalgia.Launcher.Platform` | Windows implementation (registry search, connect.exe start, process watcher, DPAPI store, character INI folder) and Linux stubs |
 | `src/Nostalgia.Launcher` | Avalonia UI (MVVM, CommunityToolkit.Mvvm), UI language English: `Resources/strings.en.json` → `Strings.resx` (`python tools/gen-strings.py`), `Assets/Brand` (synced art) |
 | `tests/` | xUnit + Avalonia headless tests, staging manifests (`tests/manifests`) |
 | `manifest/launcher.json` | the live manifest |

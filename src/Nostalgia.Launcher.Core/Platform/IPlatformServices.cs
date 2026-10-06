@@ -40,6 +40,8 @@ public interface IProcessWatcher
     /// <summary>Waits until a new game process appears (ids in <paramref name="ignore"/> existed before the launch).</summary>
     Task<int?> WaitForGameStartAsync(string clientFolder, string gameDll, IReadOnlySet<int> ignore, TimeSpan timeout, CancellationToken ct);
     Task WaitForExitAsync(int pid, CancellationToken ct);
+    /// <summary>Any running client with one of these dll names, from any folder (all installs share the character INIs).</summary>
+    bool AnyGameRunning(IReadOnlyList<string> dllNames);
 }
 
 /// <summary>Stores the login encrypted for the current OS user (Windows: DPAPI; Linux later: libsecret).</summary>
@@ -51,8 +53,9 @@ public interface ICredentialStore
     void Delete();
 }
 
-/// <summary>Finds the client's character INI files (quickbar import; see docs/client/quickbar-ini.md once calibrated).</summary>
+/// <summary>Finds the folder of the client's character INIs (docs/client/quickbar-ini.md).</summary>
 public interface IQuickbarIniLocator
 {
-    IReadOnlyList<string> FindCharacterInis();
+    /// <summary>The folder that holds <c>&lt;Character&gt;-5.ini</c> for this client install, or null if it can't be determined.</summary>
+    string? SettingsFolder(string clientFolder);
 }

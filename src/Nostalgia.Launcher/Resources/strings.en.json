@@ -3,7 +3,6 @@
   "WindowTitleBeta": "Nostalgia – PvP Freeshard (Beta Test)",
   "Tagline": "CLASSIC 1.65 · SHROUDED ISLES",
   "NavPlay": "Play",
-  "NavQuickbars": "Quickbars",
   "NavSettings": "Settings",
   "BetaStrip": "Beta test · Bugs and resets possible ·",
   "BetaStripLink": "Feedback on Discord",
@@ -89,6 +88,12 @@
   "AboutNoPhase": "none",
   "AboutCredits": "Artwork: Nostalgia art set (original work). Fonts: Cinzel (Copyright 2020 The Cinzel Project Authors) and Inter (Copyright 2016 The Inter Project Authors), both under the SIL Open Font License 1.1 – licence texts below. The launcher only uses an existing client installation and does not change any game files.",
   "SourceCode": "Source code",
-  "PrivacyText": "What the server stores: your Discord ID and your account name (linked by the Discord bot, one account per Discord user), the password only as a hash, plus the usual game data (characters, login times, IP address at login).\n\nWhat the launcher stores on this PC ({0}):\n• login.dat – account name and password, encrypted by Windows (DPAPI, only your Windows account can read it). “Switch account / sign out” deletes the file.\n• settings.json – client folder, notices you have read.\n• manifest-cache.json – server address and news.\n• logs – logs of the last days, without the password.\n\nThe launcher sends nothing except: fetching the manifest (GitHub), the status check of the login port, and update downloads. When the game starts, the client receives account name and password as start parameters (visible to other programs of your Windows account).",
-  "QuickbarsNotYet": "The quickbar import is not part of this version yet."
+  "PrivacyText": "What the server stores: your Discord ID and your account name (linked by the Discord bot, one account per Discord user), the password only as a hash, plus the usual game data (characters, login times, IP address at login).\n\nWhat the launcher stores on this PC ({0}):\n• login.dat – account name and password, encrypted by Windows (DPAPI, only your Windows account can read it). “Switch account / sign out” deletes the file.\n• settings.json – client folder, notices you have read.\n• manifest-cache.json – server address and news.\n• logs – logs of the last days, without the password.\n\nThe launcher sends nothing except: fetching the manifest (GitHub), the status check of the login port, update downloads, and – when you press Play – account name and password to the Nostalgia server (encrypted, HTTPS) to fetch the quickbar layouts of the Master Trainer. When the game starts, the client receives account name and password as start parameters (visible to other programs of your Windows account).",
+  "QuickbarsDone": "Quickbars set up for {0}.",
+  "QuickbarsCloseGame": "Close the game first, then press Play again.",
+  "QuickbarsLogInOnce": "Log in with {0} once, log out, then press Play again.",
+  "QuickbarsUnavailable": "Quickbars could not be checked (no answer from the server) – the game starts as usual.",
+  "QuickbarsLoginFailed": "Quickbars could not be checked (login refused) – the game starts as usual.",
+  "QuickbarsWriteFailed": "Quickbars for {0} could not be written (details in the log) – they stay ready for the next Play.",
+  "QuickbarsAckFailed": "The server did not confirm – they will be set up again on the next Play."
 }

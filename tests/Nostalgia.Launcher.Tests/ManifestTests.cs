@@ -10,7 +10,7 @@ public class ManifestTests
     // comment allowed
     {
       "schemaVersion": 1,
-      "server": { "name": "Nostalgia", "host": "play.example.org", "loginPort": 10300, "regionPort": 10400, "quickbarPort": 10380 },
+      "server": { "name": "Nostalgia", "host": "play.example.org", "loginPort": 10300, "regionPort": 10400, "quickbarUrl": "https://play.example.org" },
       "client": { "supportedVersions": [1127], "dllNames": ["game1127.dll", "game.dll"], "infoUrl": "https://www.opendaoc.com/docs/client/" },
       "launcher": { "minimumVersion": "0.1.0", "latestVersion": "0.1.1",
                     "downloadUrl": "https://github.com/x/y/releases/download/v0.1.1/Nostalgia.exe",
@@ -31,7 +31,7 @@ public class ManifestTests
         var m = r.Manifest!;
         Assert.Equal("play.example.org", m.Server.Host);
         Assert.Equal(10300, m.Server.LoginPort);
-        Assert.Equal(10380, m.Server.QuickbarPort);
+        Assert.Equal("https://play.example.org", m.Server.QuickbarUrl);
         Assert.Equal([1127], m.Client.SupportedVersions);
         Assert.Equal("0.1.1", m.Launcher.LatestVersion);
         Assert.Equal("https://discord.com/channels/1/2", m.Links.FeedbackChannel);
@@ -84,6 +84,8 @@ public class ManifestTests
     [InlineData("""{ "schemaVersion": 1, "server": { "host": "h" }, "launcher": { "minimumVersion": "0.0.0", "latestVersion": "0.1.0", "sha256": "abc" } }""", "sha256")]
     [InlineData("""{ "schemaVersion": 1, "server": { "host": "h" }, "launcher": { "minimumVersion": "0.0.0", "latestVersion": "0.1.0" }, "phase": { "badge": "BETA" } }""", "phase.id")]
     [InlineData("""{ "schemaVersion": 1, "server": { "host": "h", "loginPort": 70000 }, "launcher": { "minimumVersion": "0.0.0", "latestVersion": "0.1.0" } }""", "loginPort")]
+    [InlineData("""{ "schemaVersion": 1, "server": { "host": "h", "quickbarUrl": "http://play.example.org" }, "launcher": { "minimumVersion": "0.0.0", "latestVersion": "0.1.0" } }""", "quickbarUrl")]
+    [InlineData("""{ "schemaVersion": 1, "server": { "host": "h", "quickbarUrl": "ftp://x" }, "launcher": { "minimumVersion": "0.0.0", "latestVersion": "0.1.0" } }""", "quickbarUrl")]
     [InlineData("""{ not json""", "JSON")]
     public void Invalid_manifests_are_rejected(string json, string expected)
     {

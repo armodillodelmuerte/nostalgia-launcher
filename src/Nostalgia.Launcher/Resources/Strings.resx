@@ -9,7 +9,6 @@
   <data name="WindowTitleBeta" xml:space="preserve"><value>Nostalgia – PvP Freeshard (Beta Test)</value></data>
   <data name="Tagline" xml:space="preserve"><value>CLASSIC 1.65 · SHROUDED ISLES</value></data>
   <data name="NavPlay" xml:space="preserve"><value>Play</value></data>
-  <data name="NavQuickbars" xml:space="preserve"><value>Quickbars</value></data>
   <data name="NavSettings" xml:space="preserve"><value>Settings</value></data>
   <data name="BetaStrip" xml:space="preserve"><value>Beta test · Bugs and resets possible ·</value></data>
   <data name="BetaStripLink" xml:space="preserve"><value>Feedback on Discord</value></data>
@@ -107,6 +106,12 @@ What the launcher stores on this PC ({0}):
 • manifest-cache.json – server address and news.
 • logs – logs of the last days, without the password.
 
-The launcher sends nothing except: fetching the manifest (GitHub), the status check of the login port, and update downloads. When the game starts, the client receives account name and password as start parameters (visible to other programs of your Windows account).</value></data>
-  <data name="QuickbarsNotYet" xml:space="preserve"><value>The quickbar import is not part of this version yet.</value></data>
+The launcher sends nothing except: fetching the manifest (GitHub), the status check of the login port, update downloads, and – when you press Play – account name and password to the Nostalgia server (encrypted, HTTPS) to fetch the quickbar layouts of the Master Trainer. When the game starts, the client receives account name and password as start parameters (visible to other programs of your Windows account).</value></data>
+  <data name="QuickbarsDone" xml:space="preserve"><value>Quickbars set up for {0}.</value></data>
+  <data name="QuickbarsCloseGame" xml:space="preserve"><value>Close the game first, then press Play again.</value></data>
+  <data name="QuickbarsLogInOnce" xml:space="preserve"><value>Log in with {0} once, log out, then press Play again.</value></data>
+  <data name="QuickbarsUnavailable" xml:space="preserve"><value>Quickbars could not be checked (no answer from the server) – the game starts as usual.</value></data>
+  <data name="QuickbarsLoginFailed" xml:space="preserve"><value>Quickbars could not be checked (login refused) – the game starts as usual.</value></data>
+  <data name="QuickbarsWriteFailed" xml:space="preserve"><value>Quickbars for {0} could not be written (details in the log) – they stay ready for the next Play.</value></data>
+  <data name="QuickbarsAckFailed" xml:space="preserve"><value>The server did not confirm – they will be set up again on the next Play.</value></data>
 </root>

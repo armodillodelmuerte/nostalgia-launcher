@@ -39,6 +39,8 @@ internal sealed class FakePlatform : IPlatformServices, IClientLocator, IGameLau
     public TimeSpan GameLifetime { get; set; } = TimeSpan.Zero;
     public bool GameAppears { get; set; } = true;
     public LoginCredential? Stored { get; set; }
+    public bool ClientRunning { get; set; }
+    public string? IniFolder { get; set; }
 
     public string Name => "fake";
     public bool IsSupported => true;
@@ -55,12 +57,13 @@ internal sealed class FakePlatform : IPlatformServices, IClientLocator, IGameLau
     public Task<int?> WaitForGameStartAsync(string f, string d, IReadOnlySet<int> ignore, TimeSpan timeout, CancellationToken ct) =>
         Task.FromResult<int?>(GameAppears ? 4712 : null);
     public Task WaitForExitAsync(int pid, CancellationToken ct) => Task.Delay(GameLifetime, ct);
+    public bool AnyGameRunning(IReadOnlyList<string> dllNames) => ClientRunning;
 
     public string Description => "fake";
     public LoginCredential? Load() => Stored;
     public void Save(LoginCredential login) => Stored = login;
     public void Delete() => Stored = null;
-    public IReadOnlyList<string> FindCharacterInis() => [];
+    public string? SettingsFolder(string clientFolder) => IniFolder;
 }
 
 internal sealed class FakeShell : IUiShell
@@ -78,11 +81,11 @@ public class UiTests
 {
     private static string ManifestPath(string name) => Path.Combine(AppContext.BaseDirectory, "manifests", name);
 
-    private static MainViewModel CreateVm(string dataDir, FakePlatform platform, string manifest)
+    private static MainViewModel CreateVm(string dataDir, FakePlatform platform, string manifest, IQuickbarService? quickbars = null)
     {
         var paths = new AppPaths(dataDir);
         var http = new HttpClient();
-        var vm = new MainViewModel(new LauncherContext(paths, platform, new QuickbarServiceUnavailable(),
+        var vm = new MainViewModel(new LauncherContext(paths, platform, quickbars ?? new QuickbarServiceUnavailable(),
             new ManifestService(new HttpManifestFetcher(http), paths.ManifestCache, new LauncherVersion(0, 1, 0)),
             manifest, new UpdateInstaller(http, paths.Updates), new LauncherVersion(0, 1, 0), "test"));
         vm.AttachShell(new FakeShell());
@@ -195,6 +198,54 @@ public class UiTests
         Assert.Equal("pw123", vm.Password);
         Assert.True(vm.HasStoredLogin);
         Assert.True(vm.CanPlay);
+    }
+
+    [AvaloniaFact]
+    public async Task Play_runs_the_quickbar_step_first_and_a_running_client_stops_the_start()
+    {
+        using var data = new TempDir();
+        using var client = new TempDir();
+        using var inis = new TempDir();
+        File.WriteAllText(Path.Combine(inis.Path, "Asdasd-5.ini"), "[Quickbar]\r\nGroupSize=10\r\n");
+        var platform = new FakePlatform(client.Path) { IniFolder = inis.Path, ClientRunning = true };
+        var api = new FakeQuickbarApi
+        {
+            Pending = new PendingResponse { FormatVersion = 1, Characters = [QuickbarSamples.Character("Asdasd", "0123456789abcdef0123456789abcdef", (1, 1, 1, 35, 8, "Lunge"))] },
+        };
+        var vm = CreateVm(data.Path, platform, ManifestPath("local-staging.json"), new QuickbarService(api, platform, platform));
+        await vm.InitializeAsync();
+        vm.AcknowledgeBetaCommand.Execute(null);
+        vm.AccountName = "Bob1";
+        vm.Password = "pw";
+
+        await vm.PlayCommand.ExecuteAsync(null);
+        Assert.Empty(platform.Launches);
+        Assert.Equal("Close the game first, then press Play again.", vm.QuickbarNotice);
+        Assert.False(vm.IsLaunching);
+
+        platform.ClientRunning = false;
+        await vm.PlayCommand.ExecuteAsync(null);
+        Assert.Single(platform.Launches);
+        Assert.Equal("Quickbars set up for Asdasd.", vm.QuickbarNotice);
+        Assert.Contains("Hotkey_0=35,8,Lunge,0", File.ReadAllText(Path.Combine(inis.Path, "Asdasd-5.ini")));
+        Assert.Single(api.Acks);
+    }
+
+    [AvaloniaFact]
+    public async Task Quickbar_step_is_skipped_when_the_manifest_flag_is_off()
+    {
+        using var data = new TempDir();
+        using var client = new TempDir();
+        var platform = new FakePlatform(client.Path) { ClientRunning = true };
+        var api = new FakeQuickbarApi();
+        var vm = CreateVm(data.Path, platform, ManifestPath("local-phase-null.json"), new QuickbarService(api, platform, platform));
+        await vm.InitializeAsync();
+        vm.AccountName = "Bob1";
+        vm.Password = "pw";
+        await vm.PlayCommand.ExecuteAsync(null);
+        Assert.Equal(0, api.PendingCalls);
+        Assert.Single(platform.Launches);
+        Assert.Equal("", vm.QuickbarNotice);
     }
 
     // ── Screenshots (only when SCREENSHOT_DIR is set) ─────────────────────────────────────

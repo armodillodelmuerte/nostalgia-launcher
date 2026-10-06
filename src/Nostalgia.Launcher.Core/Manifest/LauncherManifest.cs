@@ -32,7 +32,8 @@ public sealed record ServerInfo
     public string Host { get; init; } = "";
     public int LoginPort { get; init; } = 10300;
     public int RegionPort { get; init; } = 10400;
-    public int QuickbarPort { get; init; } = 10380;
+    /// <summary>Base URL of the quickbar endpoint (<c>&lt;url&gt;/quickbar/pending</c>, <c>/quickbar/ack</c>): HTTPS, or HTTP to localhost (staging).</summary>
+    public string? QuickbarUrl { get; init; }
 }
 
 public sealed record ClientInfo
@@ -72,7 +73,7 @@ public sealed record BotInfo
 
 public sealed record FeatureFlags
 {
-    /// <summary>Quickbar import tab. Only shown when the flag is on AND the build contains the module.</summary>
+    /// <summary>Quickbar step on Play (pending layouts from the Master Trainer). Needs <c>server.quickbarUrl</c> and a build with the module.</summary>
     public bool Quickbars { get; init; }
 }
 

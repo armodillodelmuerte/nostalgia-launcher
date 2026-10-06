@@ -8,7 +8,7 @@
     "host": "connect.nostalgiapvp.com",
     "loginPort": 10300,
     "regionPort": 10400,
-    "quickbarPort": 10380
+    "quickbarUrl": "https://connect.nostalgiapvp.com"
   },
   "client": {
     "supportedVersions": [1127],

@@ -35,6 +35,17 @@ public sealed class WindowsProcessWatcher : IProcessWatcher
         return ids;
     }
 
+    public bool AnyGameRunning(IReadOnlyList<string> dllNames)
+    {
+        foreach (string dll in dllNames)
+        {
+            var found = Process.GetProcessesByName(ProcessNameFor(dll));
+            foreach (var p in found) p.Dispose();
+            if (found.Length > 0) return true;
+        }
+        return false;
+    }
+
     public async Task<int?> WaitForGameStartAsync(string clientFolder, string gameDll, IReadOnlySet<int> ignore, TimeSpan timeout, CancellationToken ct)
     {
         var until = DateTime.UtcNow + timeout;

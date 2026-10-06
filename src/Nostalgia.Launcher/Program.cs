@@ -43,7 +43,9 @@ internal static class Program
             App.CreateViewModel = () => new MainViewModel(new LauncherContext(
                 paths,
                 platform,
-                new QuickbarServiceUnavailable(),
+                platform.IsSupported
+                    ? new QuickbarService(new QuickbarHttpApi(http), platform.QuickbarIniLocator, platform.ProcessWatcher)
+                    : new QuickbarServiceUnavailable(),
                 new ManifestService(new HttpManifestFetcher(http), paths.ManifestCache, BuildInfo.Version),
                 manifestLocation,
                 new UpdateInstaller(http, paths.Updates),

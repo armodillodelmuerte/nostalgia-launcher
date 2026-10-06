@@ -41,6 +41,7 @@ public sealed class WineProcessWatcher : IProcessWatcher
     public Task<int?> WaitForGameStartAsync(string clientFolder, string gameDll, IReadOnlySet<int> ignore, TimeSpan timeout, CancellationToken ct) =>
         Task.FromResult<int?>(null);
     public Task WaitForExitAsync(int pid, CancellationToken ct) => Task.CompletedTask;
+    public bool AnyGameRunning(IReadOnlyList<string> dllNames) => false;
 }
 
 /// <summary>Later: libsecret (Secret Service). Until then the login is kept in memory for the session only.</summary>
@@ -56,5 +57,5 @@ public sealed class SessionOnlyCredentialStore : ICredentialStore
 /// <summary>Later: the same path as on Windows inside the Wine prefix (drive_c/users/&lt;user&gt;/AppData/Roaming/…).</summary>
 public sealed class WineQuickbarIniLocator : IQuickbarIniLocator
 {
-    public IReadOnlyList<string> FindCharacterInis() => [];
+    public string? SettingsFolder(string clientFolder) => null;
 }

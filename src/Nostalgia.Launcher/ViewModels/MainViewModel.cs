@@ -20,7 +20,7 @@ using Serilog;
 
 namespace Nostalgia.Launcher.ViewModels;
 
-public enum Page { Play, Quickbars, Settings }
+public enum Page { Play, Settings }
 
 public enum Overlay { None, Beta, RegisterHelp, ResetHelp, LaunchHint, LaunchFailed, About, Privacy }
 
@@ -69,7 +69,6 @@ public sealed partial class MainViewModel : ObservableObject
     [ObservableProperty] private string _phaseBadge = "";
     [ObservableProperty] private string _phaseTitle = "";
     [ObservableProperty] private string _phaseNotice = "";
-    [ObservableProperty] private bool _quickbarsVisible;
 
     public string StripText => Strings.BetaStrip;
     public string FooterLine => string.Format(CultureInfo.CurrentCulture, Strings.FooterLine, _ctx.Version,
@@ -92,8 +91,6 @@ public sealed partial class MainViewModel : ObservableObject
         PhaseTitle = phase?.Title ?? "";
         PhaseNotice = phase?.NoticeEn ?? "";
         WindowTitle = PhaseRules.WindowTitle(phase, Strings.WindowTitleBeta, Strings.WindowTitlePlain);
-        QuickbarsVisible = QuickbarFeature.Visible(Manifest.Features.Quickbars, _ctx.Quickbars);
-        if (!QuickbarsVisible && CurrentPage == Page.Quickbars) CurrentPage = Page.Play;
 
         News.Clear();
         foreach (var n in Manifest.News.OrderByDescending(n => n.ParsedDate ?? DateOnly.MinValue).Take(8))
@@ -312,6 +309,8 @@ public sealed partial class MainViewModel : ObservableObject
     [ObservableProperty] private bool _gameRunning;
     [ObservableProperty] private string _playHint = "";
     [ObservableProperty] private bool _canPlay;
+    /// <summary>One line under the Play button: what the quickbar step did (empty = nothing to say).</summary>
+    [ObservableProperty] private string _quickbarNotice = "";
 
     private void RefreshPlayState()
     {
@@ -356,9 +355,14 @@ public sealed partial class MainViewModel : ObservableObject
 
         IsLaunching = true;
         var server = Manifest.Server;
-        var before = _ctx.Platform.ProcessWatcher.FindGameProcesses(client.Folder, client.GameDll!).ToHashSet();
         try
         {
+            QuickbarNotice = "";
+            if (QuickbarFeature.Active(Manifest.Features.Quickbars, server.QuickbarUrl, _ctx.Quickbars)
+                && !await RunQuickbarStepAsync(login, client))
+                return;
+
+            var before = _ctx.Platform.ProcessWatcher.FindGameProcesses(client.Folder, client.GameDll!).ToHashSet();
             Log.Information("Play: account {Account} → {Host}:{Port} via {Tool} {Dll} in {Folder}",
                 login.Account, server.Host, server.LoginPort, ClientValidator.ConnectTool, client.GameDll, client.Folder);
             await _ctx.Platform.GameLauncher.LaunchAsync(
@@ -398,6 +402,48 @@ public sealed partial class MainViewModel : ObservableObject
         {
             IsLaunching = false;
         }
+    }
+
+    /// <summary>Writes pending quickbar layouts before the client starts. False = don't start the game (a client is running).</summary>
+    private async Task<bool> RunQuickbarStepAsync(LoginCredential login, ClientCheck client)
+    {
+        QuickbarPlayResult result;
+        try
+        {
+            result = await _ctx.Quickbars.BeforePlayAsync(new QuickbarPlayRequest(Manifest.Server.QuickbarUrl!, login, client.Folder,
+                Manifest.Client.DllNames, _ctx.Version.ToString()), CancellationToken.None);
+        }
+        catch (Exception e)
+        {
+            Log.Warning(e, "Quickbars: step failed – starting the game anyway");
+            QuickbarNotice = Strings.QuickbarsUnavailable;
+            return true;
+        }
+
+        foreach (string d in result.Details) Log.Information("Quickbars: {Detail}", d);
+        Log.Information("Quickbars: {Outcome}", result.Outcome);
+        QuickbarNotice = QuickbarNoticeText(result);
+        return result.StartGame;
+    }
+
+    internal static string QuickbarNoticeText(QuickbarPlayResult r)
+    {
+        static string F(string format, IEnumerable<string> names) => string.Format(CultureInfo.CurrentCulture, format, string.Join(", ", names));
+        switch (r.Outcome)
+        {
+            case QuickbarOutcome.Unavailable: return Strings.QuickbarsUnavailable;
+            case QuickbarOutcome.LoginFailed: return Strings.QuickbarsLoginFailed;
+            case QuickbarOutcome.ClientRunning: return Strings.QuickbarsCloseGame;
+            case QuickbarOutcome.Processed: break;
+            default: return "";
+        }
+
+        var parts = new List<string>();
+        if (r.Written.Count > 0) parts.Add(F(Strings.QuickbarsDone, r.Written));
+        if (r.AckFailed) parts.Add(Strings.QuickbarsAckFailed);
+        if (r.IniMissing.Count > 0) parts.Add(F(Strings.QuickbarsLogInOnce, r.IniMissing));
+        if (r.WriteFailed.Count > 0) parts.Add(F(Strings.QuickbarsWriteFailed, r.WriteFailed));
+        return string.Join(" ", parts);
     }
 
     public string HintWrongPasswordLine => string.Format(CultureInfo.CurrentCulture, Strings.HintWrongPassword, Manifest.Bot.ResetCommand);
@@ -497,12 +543,10 @@ public sealed partial class MainViewModel : ObservableObject
 
     public bool IsPlayPage => CurrentPage == Page.Play;
     public bool IsSettingsPage => CurrentPage == Page.Settings;
-    public bool IsQuickbarsPage => CurrentPage == Page.Quickbars;
     partial void OnCurrentPageChanged(Page value)
     {
         OnPropertyChanged(nameof(IsPlayPage));
         OnPropertyChanged(nameof(IsSettingsPage));
-        OnPropertyChanged(nameof(IsQuickbarsPage));
     }
 
     public bool OverlayVisible => CurrentOverlay != Overlay.None;
@@ -522,7 +566,6 @@ public sealed partial class MainViewModel : ObservableObject
 
     [RelayCommand] private void ShowPlay() => CurrentPage = Page.Play;
     [RelayCommand] private void ShowSettings() => CurrentPage = Page.Settings;
-    [RelayCommand] private void ShowQuickbars() { if (QuickbarsVisible) CurrentPage = Page.Quickbars; }
     [RelayCommand] private void ShowRegisterHelp() => CurrentOverlay = Overlay.RegisterHelp;
     [RelayCommand] private void ShowResetHelp() => CurrentOverlay = Overlay.ResetHelp;
     [RelayCommand] private void ShowAbout() => CurrentOverlay = Overlay.About;

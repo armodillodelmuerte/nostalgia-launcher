@@ -1,23 +1,18 @@
 using System.Runtime.Versioning;
 using Nostalgia.Launcher.Core.Platform;
+using Nostalgia.Launcher.Core.Quickbars;
 
 namespace Nostalgia.Launcher.Platform.Windows;
 
 /// <summary>
-/// Character INIs live in <c>%APPDATA%\Electronic Arts\Dark Age of Camelot\&lt;folder&gt;\&lt;Character&gt;-&lt;n&gt;.ini</c>
-/// (owner's PC 2026-10-05: folder "Atlas"). Which folder belongs to which server is part of the quickbar calibration
-/// (docs/client/quickbar-ini.md) – until then all are listed and the player picks.
+/// <c>%APPDATA%\Electronic Arts\Dark Age of Camelot\&lt;settings&gt;</c>, <c>&lt;settings&gt;</c> from the client's <c>paths.dat</c>
+/// (owner's install: <c>Atlas</c>). Rules: docs/client/quickbar-ini.md, <see cref="QuickbarIniPaths"/>.
 /// </summary>
 [SupportedOSPlatform("windows")]
 public sealed class WindowsQuickbarIniLocator : IQuickbarIniLocator
 {
-    public IReadOnlyList<string> FindCharacterInis()
-    {
-        string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "Electronic Arts", "Dark Age of Camelot");
-        if (!Directory.Exists(root)) return [];
-        return Directory.EnumerateFiles(root, "*-*.ini", SearchOption.AllDirectories)
-            .OrderByDescending(File.GetLastWriteTimeUtc)
-            .ToList();
-    }
+    public static string DaocRoot => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+        "Electronic Arts", "Dark Age of Camelot");
+
+    public string? SettingsFolder(string clientFolder) => QuickbarIniPaths.SettingsFolder(DaocRoot, clientFolder);
 }

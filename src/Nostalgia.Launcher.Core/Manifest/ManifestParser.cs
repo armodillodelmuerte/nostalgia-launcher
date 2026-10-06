@@ -1,3 +1,4 @@
+using Nostalgia.Launcher.Core.Quickbars;
 using Nostalgia.Launcher.Core.Updates;
 using System.Text.Json;
 
@@ -51,7 +52,8 @@ public static class ManifestParser
         else
         {
             if (!IsPort(m.Server.LoginPort)) p.Add("server.loginPort out of range");
-            if (!IsPort(m.Server.QuickbarPort)) p.Add("server.quickbarPort out of range");
+            if (m.Server.QuickbarUrl is { Length: > 0 } qb && !QuickbarHttpApi.IsAllowedBaseUrl(qb))
+                p.Add("server.quickbarUrl must be https:// (http:// only to localhost)");
         }
 
         if (m.Launcher is null)

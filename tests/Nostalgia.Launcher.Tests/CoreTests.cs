@@ -263,11 +263,14 @@ public class ClientTests
 public class MiscTests
 {
     [Fact]
-    public void Quickbar_tab_needs_flag_and_module()
+    public void Quickbar_step_needs_flag_url_and_module()
     {
         var none = new QuickbarServiceUnavailable();
-        Assert.False(QuickbarFeature.Visible(true, none));
-        Assert.False(QuickbarFeature.Visible(false, none));
+        var real = new QuickbarService(new FakeQuickbarApi(), new FakeIniLocator(null), new FakeProcesses());
+        Assert.False(QuickbarFeature.Active(true, "https://x", none));
+        Assert.False(QuickbarFeature.Active(false, "https://x", real));
+        Assert.False(QuickbarFeature.Active(true, null, real));
+        Assert.True(QuickbarFeature.Active(true, "https://x", real));
     }
 
     [Fact]
