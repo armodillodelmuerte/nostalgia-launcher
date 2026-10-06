@@ -260,7 +260,7 @@ public class QuickbarIniWriterTests
     public void Crlf_lf_bom_latin1_bytes_and_a_missing_final_line_break_are_kept()
     {
         // LF file stays LF.
-        string lf = QuickbarSamples.Calibration;
+        string lf = QuickbarSamples.Calibration.ReplaceLineEndings("\n"); // the source file's own line endings depend on git's checkout
         string lfResult = QuickbarIniWriter.Apply(lf, Wizard);
         Assert.DoesNotContain("\r", lfResult);
 
